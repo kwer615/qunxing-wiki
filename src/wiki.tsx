@@ -2751,7 +2751,7 @@ export default function App() {
                       <span className="text-[#8E8474]">
                         {selectedEntity.data.id === 'keweiruo' ? '权能：' : '恩格萨赐福：'}
                       </span>
-                      <span className="text-[#8AB4CE] text-right max-w-[62%] line-clamp-2" title={selectedEntity.data.blessings.join('、')}>
+                      <span className="text-[#8AB4CE] text-right max-w-[68%] leading-relaxed break-words">
                         {selectedEntity.data.blessings.length > 0
                           ? selectedEntity.data.blessings.join('、')
                           : '无赐福（普通人）'}
