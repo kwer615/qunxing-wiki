@@ -10,7 +10,8 @@ import edwin from './assets/characters/edwin.webp';
 import novia from './assets/characters/novia.webp';
 import aurena from './assets/characters/aurena.webp';
 import mireya from './assets/characters/mireya.webp';
-import setia from './assets/characters/setia.webp';
+import setia1 from './assets/characters/setia.webp';
+import setia2 from './assets/characters/setia-2.webp';
 import verosa1 from './assets/characters/verosa-1.webp';
 import verosa2 from './assets/characters/verosa-2.webp';
 import viola from './assets/characters/viola.webp';
@@ -28,7 +29,7 @@ export const CHAR_IMAGES: Record<string, string[]> = {
   novia: [novia],
   aurena: [aurena],
   mireya: [mireya],
-  setia: [setia],
+  setia: [setia1, setia2],
   verosa: [verosa1, verosa2],
   viola: [viola],
   mifla: [mifla],

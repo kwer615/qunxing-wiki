@@ -270,8 +270,8 @@ const SERLAN_CHARACTERS = [
       '【幕后底牌】察觉高庭早已亡佚及瑟兰全境污染日常化，主动占据高庭空位发出恢复北线的回文（仅薇蕾娜知情协助）。本人正在向「旧日眷属」转化，但她自己尚不知情。',
     imgs: [
       { label: '立绘 Ⅰ · 象牙白教首盛装', url: '' },
-      { label: '立绘 Ⅱ · 断桥留刻施展态', url: '' },
-      { label: '立绘 Ⅲ · 旧城南灰门夜谈', url: '' }
+      { label: '立绘 Ⅱ · 水边白纱', url: '' },
+      { label: '立绘 Ⅲ · 海滩午后', url: '' }
     ]
   },
   {
@@ -478,7 +478,7 @@ const SERLAN_CHARACTERS = [
     secret: '第六节断司堂主裁者，因玩家分栏作证清晰而建立信任。',
     imgs: [
       { label: '立绘 Ⅰ · 断司司长斗篷装', url: '' },
-      { label: '立绘 Ⅱ · 陆沉余烬焚城态', url: '' }
+      { label: '立绘 Ⅱ · 池畔泳装', url: '' }
     ]
   },
   {
@@ -504,7 +504,7 @@ const SERLAN_CHARACTERS = [
     secret: '星旅三《平静水面的倒影》核心人物，玩家助其精准揪出伪善匪首而未误伤无辜住户。',
     imgs: [
       { label: '立绘 Ⅰ · 巡回判官梅紫长袍', url: '' },
-      { label: '立绘 Ⅱ · 微笑审讯沉渊态', url: '' }
+      { label: '立绘 Ⅱ · 判司廊下', url: '' }
     ]
   },
   {
@@ -602,7 +602,7 @@ const SERLAN_CHARACTERS = [
     coreSummary:
       '哪里都可能遇见，每次都编一个不像真话的理由。她不解释自己从哪来，也没人能查出她是什么。',
     appearance:
-      '白发及腰，发丝细而顺，光下泛极淡的暖，平时松挽在身后落几缕在颈侧。异瞳——左眼淡蓝、右眼明黄，两只都不是纯色，靠瞳心更亮；被她正视的人会莫名想交代实话。头顶一根粉色呆毛，会随情绪动：放松时软软垂着，被撩到时立起来，装傻时轻轻抖。肤色是活人的白，颈侧与耳后透一点血色，不是惨白。锁骨下方一道旧痕，形状像一道合上的缝。体温比常人低半度，手掌是暖的。',
+      '白发及腰，发丝细而顺，光下泛极淡的暖，平时松挽在身后落几缕在颈侧。异瞳——左眼灰白色、右眼亮金色，两只都不是纯色，靠瞳心更亮；被她正视的人会莫名想交代实话。头顶一根粉色呆毛，会随情绪动：放松时软软垂着，被撩到时立起来，装傻时轻轻抖。肤色是活人的白，颈侧与耳后透一点血色，不是惨白。锁骨下方一道旧痕，形状像一道合上的缝。体温比常人低半度，手掌是暖的。',
     attire:
       '通体雪白的长裙，剪裁极简、没有花纹；收腰，裙摆自膝下散开，走动时像一层薄雪在动。小立领扣到锁骨上方一枚哑银小扣，不开深 V。长袖窄口，露出一截手腕。白丝长筒袜，边缘藏在裙摆里。淡金色高跟鞋，跟高九厘米，鞋身极窄，细跟、鞋面一线淡金、侧面一枚米粒大的扣，走路会响一声很轻的金属声。全身只有白、白、淡金三色。',
     personality:
@@ -1368,7 +1368,7 @@ export default function App() {
                     : 'text-[#8E8474] hover:text-[#D8D0C1]'
                 }`}
               >
-                <span>灾变、常识圈与教团</span>
+                <span>灾变、常识圈与教团成因</span>
               </button>
               <button
                 type="button"
@@ -1455,7 +1455,7 @@ export default function App() {
                         onClick={() => navigateTo('eldritch-engsa', 'engsa-entity-anchor')}
                         className="w-full text-left py-1.5 px-2 text-[11px] text-[#8E8474] hover:text-[#E2B49A] transition-colors flex items-center gap-2"
                       >
-                        <span>◈ 本体、漏记与六象征</span>
+                        <span>◈ 本体、漏记与象征</span>
                       </button>
                       <button
                         type="button"
@@ -1463,7 +1463,7 @@ export default function App() {
                         className="w-full text-left py-1.5 px-2 text-[11px] text-[#E5C88F] hover:text-[#F2ECE1] transition-colors flex items-center gap-2"
                       >
                         <Sparkles className="w-3 h-3 text-[#B8965A] shrink-0" />
-                        <span>恩格萨之赐福（六种）</span>
+                        <span>恩格萨之赐福</span>
                       </button>
                     </div>
                   )}
@@ -1500,9 +1500,9 @@ export default function App() {
               {openRegions.serlan && (
                 <div className="mt-1.5 space-y-1 pl-3 border-l border-[#B8965A]/25">
                   {[
-                    { id: 'serlan-chars', label: '人物图鉴（13人）', icon: Users },
+                    { id: 'serlan-chars', label: '图鉴', icon: Users },
                     { id: 'serlan-boss', label: '灾变领主 · BOSS', icon: Skull, highlight: true },
-                    { id: 'serlan-beasts', label: '荒野异兽（6种）', icon: Feather },
+                    { id: 'serlan-beasts', label: '荒野异兽', icon: Feather },
                     { id: 'serlan-geo', label: '地理、四圈与克朗', icon: Compass },
                     { id: 'serlan-customs', label: '府城六规与销名', icon: ScrollText },
                     { id: 'serlan-orgs', label: '留府、三司与不逝者', icon: Landmark },
@@ -2065,7 +2065,7 @@ export default function App() {
                     SERLAN ARCHIVES · DRAMATIS PERSONAE
                   </p>
                   <h2 className="text-3xl font-bold tracking-[0.15em] text-[#F2ECE1]">
-                    瑟兰人物图鉴（共14人）
+                    图鉴
                   </h2>
                   <p className="text-xs text-[#8E8474] mt-2">
                     点击任意人物残卷卡片可展开完整档案；每张卡片与详情页均内置多图切换槽位（Ⅰ / Ⅱ / Ⅲ）。
@@ -2165,7 +2165,7 @@ export default function App() {
                   CATASTROPHE LORDS & UNIQUE ENTITIES · BOSS
                 </p>
                 <h2 className="text-3xl font-bold tracking-[0.15em] text-[#F2ECE1]">
-                  瑟兰灾变领主与特殊个体（共6尊）
+                  灾变领主与特殊个体
                 </h2>
                 <p className="text-xs text-[#8E8474] mt-2 leading-relaxed">
                   收录盘踞瑟兰各处的具名族群霸主及陆沉、天倾级罕见活体天灾。点击卡片可弹出该领主的完整生态、压制机制与应对卷宗，同样支持多形态图片切换。
@@ -2216,7 +2216,7 @@ export default function App() {
           )}
 
           {/* -----------------------------------------------------------------
-              7. 瑟兰行省：荒野异兽（6种普通生物种群）
+              7. 瑟兰行省：荒野异兽
           ----------------------------------------------------------------- */}
           {activeTab === 'serlan-beasts' && (
             <div className="space-y-8">
@@ -2225,7 +2225,7 @@ export default function App() {
                   SERLAN WILDERNESS BESTIARY
                 </p>
                 <h2 className="text-3xl font-bold tracking-[0.15em] text-[#F2ECE1]">
-                  瑟兰荒野异兽录（6种常驻种群）
+                  瑟兰荒野异兽录
                 </h2>
                 <p className="text-xs text-[#8E8474] mt-2">
                   分布于瑟兰废站、旧村、山路与淤渠的常见荒野异常生物（具名领主详见「灾变领主 · BOSS」专栏）。
