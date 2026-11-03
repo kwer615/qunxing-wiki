@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 字体自托管：全部是按原文用字裁过的子集，不再请求 Google Fonts。
+   国内不挂代理也不会退成系统宋体；单文件 891KB 覆盖 300–700 全部字重。 */
+@font-face {
+  font-family: 'Noto Serif SC';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('./fonts/NotoSerifSC-subset.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Cinzel Decorative';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./fonts/CinzelDecorative-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Cinzel Decorative';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./fonts/CinzelDecorative-Bold.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IM Fell English';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./fonts/IMFellEnglish-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IM Fell English';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./fonts/IMFellEnglish-Italic.woff2') format('woff2');
+}
