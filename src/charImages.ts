@@ -13,7 +13,6 @@ import mireya from './assets/characters/mireya.webp';
 import setia1 from './assets/characters/setia.webp';
 import setia2 from './assets/characters/setia-2.webp';
 import verosa1 from './assets/characters/verosa-1.webp';
-import verosa2 from './assets/characters/verosa-2.webp';
 import viola from './assets/characters/viola.webp';
 import mifla from './assets/characters/mifla.webp';
 import lecia from './assets/characters/lecia.webp';
@@ -30,7 +29,7 @@ export const CHAR_IMAGES: Record<string, string[]> = {
   aurena: [aurena],
   mireya: [mireya],
   setia: [setia1, setia2],
-  verosa: [verosa1, verosa2],
+  verosa: [verosa1],
   viola: [viola],
   mifla: [mifla],
   lecia: [lecia],
