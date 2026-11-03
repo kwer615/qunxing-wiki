@@ -2137,7 +2137,7 @@ export default function App() {
                     SERLAN ARCHIVES · DRAMATIS PERSONAE
                   </p>
                   <h2 className="text-3xl font-bold tracking-[0.15em] text-[#F2ECE1]">
-                    瑟兰人物图鉴（共13人）
+                    瑟兰人物图鉴（共14人）
                   </h2>
                   <p className="text-xs text-[#8E8474] mt-2">
                     点击任意人物残卷卡片可展开完整档案；每张卡片与详情页均内置多图切换槽位（Ⅰ / Ⅱ / Ⅲ）。
@@ -2162,12 +2162,12 @@ export default function App() {
                 </div>
               </header>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7 auto-rows-fr">
                 {filteredCharacters.map((char, idx) => (
                   <div
                     key={char.id}
                     onClick={() => setSelectedEntity({ type: 'char', data: char })}
-                    className="torn-sheet p-4 cursor-pointer group hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+                    className="torn-sheet p-4 cursor-pointer group hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-full"
                   >
                     <div>
                       <RelicImageArchitecture
@@ -2189,20 +2189,21 @@ export default function App() {
                         </div>
                         <p className="text-xs text-[#B8965A] mt-1 tracking-wider">{char.role}</p>
 
-                        <div className="flex flex-wrap gap-1.5 mt-3">
+                        <div className="mt-3 h-[20px] overflow-hidden flex items-center">
                           {char.blessings.length > 0 ? (
-                            char.blessings.map((b) => (
-                              <span
-                                key={b}
-                                className="px-2 py-0.5 text-[11px] bg-[#1B1714] text-[#D8D0C1] border-l border-[#B8965A]/60"
-                              >
-                                恩格萨赐福 · {b}
+                            <p
+                              className="text-[11px] text-[#D8D0C1] truncate w-full leading-none"
+                              title={char.blessings.join('、')}
+                            >
+                              <span className="text-[#B8965A]">
+                                {char.id === 'keweiruo' ? '权能' : '恩格萨赐福'} ·{' '}
                               </span>
-                            ))
+                              {char.blessings.join(' · ')}
+                            </p>
                           ) : (
-                            <span className="px-2 py-0.5 text-[11px] bg-[#1B1714] text-[#8E8474]">
+                            <p className="text-[11px] text-[#8E8474] leading-none">
                               无赐福 · 凡俗之躯
-                            </span>
+                            </p>
                           )}
                         </div>
 
@@ -2834,8 +2835,10 @@ export default function App() {
                       <span className="text-[#E2B49A] font-bold">{selectedEntity.data.tier}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-[#8E8474]">恩格萨赐福：</span>
-                      <span className="text-[#8AB4CE]">
+                      <span className="text-[#8E8474]">
+                        {selectedEntity.data.id === 'keweiruo' ? '权能：' : '恩格萨赐福：'}
+                      </span>
+                      <span className="text-[#8AB4CE] text-right max-w-[62%] line-clamp-2" title={selectedEntity.data.blessings.join('、')}>
                         {selectedEntity.data.blessings.length > 0
                           ? selectedEntity.data.blessings.join('、')
                           : '无赐福（普通人）'}
