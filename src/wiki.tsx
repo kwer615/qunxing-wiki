@@ -1103,7 +1103,7 @@ function RelicImageArchitecture({
 
 export default function App() {
   // 默认打开「恩格萨」以便直接看到恩格萨及其专属六大赐福的美化效果
-  const [activeTab, setActiveTab] = useState('eldritch-engsa');
+  const [activeTab, setActiveTab] = useState('world-law');
 
   // 旧日支配者手风琴折叠状态（总栏与各个旧日子项均可折叠）
   const [eldritchMenuOpen, setEldritchMenuOpen] = useState(true);
