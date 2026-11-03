@@ -616,8 +616,8 @@ const SERLAN_CHARACTERS = [
     secret:
       '她的身体毁掉会重新长回来，意识与记忆不断，她从不解释也从不演示，被问起就岔开话题。她在的地方，钟会慢半拍，水面倒影会晚半拍——这是她到了的唯一预兆。',
     imgs: [
-      { label: '立绘 Ⅰ · 门前回望', url: '' },
-      { label: '立绘 Ⅱ · 石阶上的白花', url: '' }
+      { label: '立绘 Ⅰ · 雪白长裙', url: '' },
+      { label: '立绘 Ⅱ · 紫藤旗袍', url: '' }
     ]
   }
 ];
@@ -1500,7 +1500,7 @@ export default function App() {
               {openRegions.serlan && (
                 <div className="mt-1.5 space-y-1 pl-3 border-l border-[#B8965A]/25">
                   {[
-                    { id: 'serlan-chars', label: '图鉴', icon: Users },
+                    { id: 'serlan-chars', label: '人物', icon: Users },
                     { id: 'serlan-boss', label: '灾变领主 · BOSS', icon: Skull, highlight: true },
                     { id: 'serlan-beasts', label: '荒野异兽', icon: Feather },
                     { id: 'serlan-geo', label: '地理、四圈与克朗', icon: Compass },
@@ -2055,7 +2055,7 @@ export default function App() {
           )}
 
 {/* -----------------------------------------------------------------
-              5. 瑟兰行省：人物图鉴
+              5. 瑟兰行省：人物
           ----------------------------------------------------------------- */}
           {activeTab === 'serlan-chars' && (
             <div className="space-y-8">
@@ -2065,7 +2065,7 @@ export default function App() {
                     SERLAN ARCHIVES · DRAMATIS PERSONAE
                   </p>
                   <h2 className="text-3xl font-bold tracking-[0.15em] text-[#F2ECE1]">
-                    图鉴
+                    人物
                   </h2>
                   <p className="text-xs text-[#8E8474] mt-2">
                     点击任意人物残卷卡片可展开完整档案；每张卡片与详情页均内置多图切换槽位（Ⅰ / Ⅱ / Ⅲ）。
