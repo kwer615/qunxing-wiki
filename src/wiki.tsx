@@ -616,7 +616,8 @@ const SERLAN_CHARACTERS = [
     secret:
       '她的身体毁掉会重新长回来，意识与记忆不断，她从不解释也从不演示，被问起就岔开话题。她在的地方，钟会慢半拍，水面倒影会晚半拍——这是她到了的唯一预兆。',
     imgs: [
-      { label: '立绘 Ⅰ · 雪白长裙（待补）', url: '' }
+      { label: '立绘 Ⅰ · 门前回望', url: '' },
+      { label: '立绘 Ⅱ · 石阶上的白花', url: '' }
     ]
   }
 ];
@@ -1681,15 +1682,6 @@ export default function App() {
                   <h3 className="text-xl font-bold tracking-widest text-[#E5C88F] flex items-center gap-2">
                     <span>✦</span> 九大存在位阶（按稳定介入冲突的规模划分）
                   </h3>
-                  <button
-                    type="button"
-                    onClick={() => navigateTo('eldritch-engsa', 'engsa-blessings-anchor')}
-                    className="px-3.5 py-1.5 text-xs bg-[#8C3B32]/25 border border-[#8C3B32]/60 text-[#E2B49A] hover:bg-[#8C3B32]/40 transition-colors flex items-center gap-1.5"
-                  >
-                    <Sparkles className="w-3.5 h-3.5" />
-                    <span>前往查阅：恩格萨带来的六大赐福</span>
-                    <ChevronRight className="w-3.5 h-3.5" />
-                  </button>
                 </div>
 
                 <div className="space-y-3">

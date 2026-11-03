@@ -16,6 +16,8 @@ import verosa2 from './assets/characters/verosa-2.webp';
 import viola from './assets/characters/viola.webp';
 import mifla from './assets/characters/mifla.webp';
 import lecia from './assets/characters/lecia.webp';
+import keweiruo1 from './assets/characters/keweiruo-1.webp';
+import keweiruo2 from './assets/characters/keweiruo-2.webp';
 
 export const CHAR_IMAGES: Record<string, string[]> = {
   yserin: [yserin1, yserin2, yserin3],
@@ -30,5 +32,6 @@ export const CHAR_IMAGES: Record<string, string[]> = {
   verosa: [verosa1, verosa2],
   viola: [viola],
   mifla: [mifla],
-  lecia: [lecia]
+  lecia: [lecia],
+  keweiruo: [keweiruo1, keweiruo2]
 };
