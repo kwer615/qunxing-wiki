@@ -3,3 +3,7 @@ dist/
 _dl/
 *.log
 .DS_Store
+
+# 本地备份
+src/*.bak-*
+_dl/
