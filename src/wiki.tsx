@@ -1468,29 +1468,6 @@ export default function App() {
                   )}
                 </div>
 
-                {/* 可折叠子项 02：待收录旧日支配者槽位 */}
-                <div className="pt-1">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      toggleOldOne('nextOldOne');
-                      navigateTo('eldritch-expansion');
-                    }}
-                    className={`w-full flex items-center justify-between py-2 px-3 text-xs tracking-wider transition-colors ${
-                      activeTab === 'eldritch-expansion'
-                        ? 'text-[#E2B49A] bg-[#8C3B32]/20 border-l-2 border-[#C86D5B] -ml-[1px]'
-                        : 'text-[#8E8474]/70 hover:text-[#D8D0C1]'
-                    }`}
-                  >
-                    <span className="flex items-center gap-2">
-                      <span className="font-cinzel text-[10px] text-[#8E8474]">02</span>
-                      <span>待收录旧日 · 扩展槽</span>
-                    </span>
-                    <span className="text-[10px] font-cinzel px-1.5 py-0.5 bg-[#8C3B32]/20 text-[#C86D5B]">
-                      + 槽位
-                    </span>
-                  </button>
-                </div>
               </div>
             )}
           </div>
@@ -1554,28 +1531,6 @@ export default function App() {
               )}
             </div>
 
-            <div className="mb-3">
-              <button
-                type="button"
-                onClick={() => {
-                  toggleRegion('region2');
-                  navigateTo('region-expansion');
-                }}
-                className={`w-full flex items-center justify-between py-2 px-2 text-xs tracking-widest border-b border-[#8E8474]/15 transition-colors ${
-                  activeTab === 'region-expansion'
-                    ? 'text-[#E5C88F]'
-                    : 'text-[#8E8474]/70 hover:text-[#D8D0C1]'
-                }`}
-              >
-                <span className="flex items-center gap-2">
-                  <Layers className="w-3.5 h-3.5 opacity-60" />
-                  <span>第二常识圈 · 待勘探</span>
-                </span>
-                <span className="text-[10px] font-cinzel px-1.5 py-0.5 bg-[#B8965A]/10 text-[#B8965A]">
-                  + 扩展槽
-                </span>
-              </button>
-            </div>
           </div>
         </aside>
 
@@ -2107,26 +2062,7 @@ export default function App() {
             </div>
           )}
 
-          {/* -----------------------------------------------------------------
-              4.5 旧日支配者扩展槽位说明
-          ----------------------------------------------------------------- */}
-          {activeTab === 'eldritch-expansion' && (
-            <div className="max-w-3xl mx-auto py-12 text-center space-y-6">
-              <div className="torn-sheet p-10 border border-[#8C3B32]/40 space-y-5">
-                <p className="font-cinzel text-xs tracking-[0.35em] text-[#C86D5B]">
-                  GREAT OLD ONE · SLOT 02 · UNRECORDED SOURCE
-                </p>
-                <h2 className="text-3xl font-bold tracking-widest text-[#F2ECE1]">
-                  待收录旧日支配者 · 独立卷宗槽位
-                </h2>
-                <p className="text-sm text-[#8E8474] leading-relaxed max-w-xl mx-auto">
-                  「Ⅱ · 旧日支配者」已设为可折叠手风琴结构。由于每个旧日支配者都拥有各自的<strong>「本体选址、专属象征簇、专属赐福体系」</strong>，后续你在新地区设计第二尊、第三尊旧日支配者时，可直接在此展开新的子项，将祂带来的新赐福挂载在对应旧日名下。
-                </p>
-              </div>
-            </div>
-          )}
-
-          {/* -----------------------------------------------------------------
+{/* -----------------------------------------------------------------
               5. 瑟兰行省：人物图鉴
           ----------------------------------------------------------------- */}
           {activeTab === 'serlan-chars' && (
@@ -2770,22 +2706,7 @@ export default function App() {
           {/* -----------------------------------------------------------------
               12. 待扩展新地区模板预览
           ----------------------------------------------------------------- */}
-          {activeTab === 'region-expansion' && (
-            <div className="max-w-3xl mx-auto py-12 text-center space-y-6">
-              <div className="torn-sheet p-10 border border-[#B8965A]/30 space-y-5">
-                <p className="font-cinzel text-xs tracking-[0.35em] text-[#B8965A]">
-                  UNCHARTED TERRITORY · EXPANSION ARCHITECTURE
-                </p>
-                <h2 className="text-3xl font-bold tracking-widest text-[#F2ECE1]">
-                  新常识圈与新行省 · 扩展卷宗槽位
-                </h2>
-                <p className="text-sm text-[#8E8474] leading-relaxed max-w-xl mx-auto">
-                  瑟兰只是《群星沉默之地》已归档的第一个行省。本 Wiki 左侧树状目录已将「寰宇通则 / 旧日支配者」与「地区卷宗」彻底解耦，后续新地区可在此无缝展开。
-                </p>
-              </div>
-            </div>
-          )}
-        </main>
+</main>
       </div>
 
       {/* ===================================================================
