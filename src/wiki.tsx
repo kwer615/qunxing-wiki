@@ -27,6 +27,7 @@ import {
   AlertTriangle
 } from 'lucide-react';
 import { CHAR_IMAGES } from './charImages';
+import { CONTAINMENT_PREFIX, SERLAN_CONTAINMENTS } from './containments';
 
 // ============================================================================
 // 1. STATIC ARCHIVE DATA (寰宇通则 / 旧日支配者·恩格萨 / 瑟兰行省)
@@ -1189,6 +1190,18 @@ export default function App() {
         });
       }
     });
+    SERLAN_CONTAINMENTS.forEach((item) => {
+      if ([item.id, item.name, item.enName, item.kind, item.location].join(' ').toLowerCase().includes(q)) {
+        results.push({
+          label: `收容物｜${item.id} ${item.name}`,
+          action: () => {
+            setActiveTab('serlan-containments');
+            setSelectedEntity({ type: 'containment', data: item });
+            setSearchQuery('');
+          }
+        });
+      }
+    });
     ENGSA_BLESSINGS.forEach((bl) => {
       if (bl.name.includes(q) || bl.subtitle.includes(q)) {
         results.push({
@@ -1308,7 +1321,7 @@ export default function App() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="检索人物、领主、恩格萨赐福..."
+                placeholder="检索人物、领主、收容物、恩格萨赐福..."
                 className="w-full bg-transparent text-xs text-[#D8D0C1] placeholder-[#8E8474]/60 focus:outline-none tracking-wider"
               />
               {searchQuery && (
@@ -1502,6 +1515,7 @@ export default function App() {
                     { id: 'serlan-chars', label: '人物', icon: Users },
                     { id: 'serlan-boss', label: '灾变领主 · BOSS', icon: Skull, highlight: true },
                     { id: 'serlan-beasts', label: '荒野异兽', icon: Feather },
+                    { id: 'serlan-containments', label: '收容物', icon: Archive },
                     { id: 'serlan-geo', label: '地理、四圈与克朗', icon: Compass },
                     { id: 'serlan-customs', label: '府城六规与销名', icon: ScrollText },
                     { id: 'serlan-orgs', label: '留府、三司与不逝者', icon: Landmark },
@@ -2157,6 +2171,50 @@ export default function App() {
           {/* -----------------------------------------------------------------
               6. 瑟兰行省：灾变领主 · BOSS
           ----------------------------------------------------------------- */}
+          {activeTab === 'serlan-containments' && (
+            <div className="space-y-8">
+              <header className="border-b border-[#B8965A]/30 pb-6">
+                <h2 className="text-3xl font-bold tracking-[0.15em] text-[#F2ECE1]">收容物</h2>
+                <p className="text-sm text-[#D8D0C1]/90 mt-4 leading-relaxed">
+                  <span className="font-cinzel text-[#E5C88F]">{CONTAINMENT_PREFIX.code}</span> 取自{' '}
+                  <span className="font-fell italic text-[#E5C88F]">{CONTAINMENT_PREFIX.en}</span>，
+                  意为「{CONTAINMENT_PREFIX.meaning}」，是本作收容物的统一编号前缀。
+                </p>
+                <p className="text-xs text-[#8E8474] mt-2 leading-relaxed">
+                  九件收容物散布于瑟兰各地。查阅档案，了解它们的异常机制、所在地与看守方式。
+                </p>
+              </header>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                {SERLAN_CONTAINMENTS.map((item) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    aria-label={`查阅 ${item.id} ${item.name}`}
+                    onClick={() => setSelectedEntity({ type: 'containment', data: item })}
+                    className="torn-sheet p-5 text-left cursor-pointer group hover:-translate-y-1 motion-reduce:transform-none transition-all duration-300 border-t-2 border-[#B8965A]/70 flex flex-col justify-between min-w-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E5C88F]"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between text-[#B8965A] border-b border-[#B8965A]/20 pb-3 mb-4">
+                        <span className="font-cinzel text-xs tracking-[0.15em]">{item.id}</span>
+                        <Archive className="w-4 h-4 opacity-70" aria-hidden="true" />
+                      </div>
+                      <h3 className="text-xl font-bold tracking-wider text-[#F2ECE1] group-hover:text-[#E5C88F] transition-colors break-words">{item.name}</h3>
+                      <p className="font-fell italic text-sm text-[#B8965A] mt-2 leading-relaxed break-words">{item.enName}</p>
+                      <p className="text-xs text-[#8E8474] mt-4 leading-relaxed">{item.kind}</p>
+                      <p className="text-xs text-[#D8D0C1]/90 mt-2 leading-relaxed">所在地：{item.location}</p>
+                      <p className="text-sm text-[#D8D0C1]/85 mt-4 line-clamp-3 leading-relaxed">{item.mechanisms[0].body}</p>
+                    </div>
+                    <div className="mt-5 pt-3 border-t border-[#B8965A]/25 flex items-center justify-between text-xs text-[#E5C88F]">
+                      <span>查阅完整档案</span>
+                      <ChevronRight className="w-4 h-4 shrink-0 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
           {activeTab === 'serlan-boss' && (
             <div className="space-y-8">
               <header className="border-b border-[#8C3B32]/50 pb-6">
@@ -2710,17 +2768,59 @@ export default function App() {
         >
           <div
             onClick={(e) => e.stopPropagation()}
+            role={selectedEntity.type === 'containment' ? 'dialog' : undefined}
+            aria-modal={selectedEntity.type === 'containment' ? true : undefined}
+            aria-labelledby={selectedEntity.type === 'containment' ? 'containment-dossier-title' : undefined}
+            onKeyDown={(e) => {
+              if (selectedEntity.type !== 'containment') return;
+              if (e.key === 'Escape') { e.stopPropagation(); setSelectedEntity(null); }
+              if (e.key === 'Tab') { e.preventDefault(); e.currentTarget.querySelector('button')?.focus(); }
+            }}
             className="torn-sheet w-full max-w-5xl max-h-[90vh] overflow-y-auto p-6 sm:p-10 border border-[#B8965A]/40 relative"
           >
             <button
               type="button"
               onClick={() => setSelectedEntity(null)}
+              autoFocus={selectedEntity.type === 'containment'}
+              aria-label="关闭档案"
               className="sticky top-2 float-right z-30 p-2 bg-[#14110E] text-[#B8965A] hover:text-[#F2ECE1] border border-[#B8965A]/30"
             >
               <X className="w-5 h-5" />
             </button>
 
-            {selectedEntity.type === 'char' ? (
+            {selectedEntity.type === 'containment' ? (
+              <div className="clear-both space-y-8">
+                <header className="border-b border-[#B8965A]/30 pb-5">
+                  <p className="font-cinzel text-xs tracking-[0.2em] text-[#B8965A]">{selectedEntity.data.id}</p>
+                  <h3 id="containment-dossier-title" className="text-2xl sm:text-3xl font-bold tracking-wider text-[#F2ECE1] mt-2 break-words">{selectedEntity.data.name}</h3>
+                  <p className="font-fell italic text-lg text-[#E5C88F] mt-3 leading-relaxed break-words">{selectedEntity.data.enName}</p>
+                  <p className="text-xs text-[#8E8474] mt-3 leading-relaxed">{selectedEntity.data.kind}</p>
+                </header>
+
+                <dl className="grid grid-cols-1 sm:grid-cols-2 gap-5 p-5 bg-[#0B0A09]/80 border-l-2 border-[#B8965A] text-sm leading-relaxed">
+                  <div className="sm:col-span-2"><dt className="text-xs text-[#B8965A] mb-1">所在地</dt><dd>{selectedEntity.data.location}</dd></div>
+                  <div><dt className="text-xs text-[#B8965A] mb-1">看守方</dt><dd>{selectedEntity.data.custodian}</dd></div>
+                  <div><dt className="text-xs text-[#B8965A] mb-1">协办</dt><dd>{selectedEntity.data.assistance}</dd></div>
+                </dl>
+
+                <section className="space-y-5">
+                  <h4 className="text-sm font-bold tracking-widest text-[#B8965A] border-b border-[#B8965A]/20 pb-3">异常机制</h4>
+                  {selectedEntity.data.mechanisms.map((mechanism) => (
+                    <div key={mechanism.title}>
+                      <h5 className="text-sm font-bold text-[#E5C88F] mb-2">{mechanism.title}</h5>
+                      <p className="text-sm leading-loose text-[#D8D0C1]/90">{mechanism.body}</p>
+                    </div>
+                  ))}
+                </section>
+
+                <section className="space-y-4">
+                  <h4 className="text-sm font-bold tracking-widest text-[#B8965A] border-b border-[#B8965A]/20 pb-3">瑟兰落点与看守记录</h4>
+                  {selectedEntity.data.localNotes.map((paragraph, index) => (
+                    <p key={index} className="text-sm leading-loose text-[#D8D0C1]/90">{paragraph}</p>
+                  ))}
+                </section>
+              </div>
+            ) : selectedEntity.type === 'char' ? (
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 clear-both">
                 <div className="lg:col-span-5 space-y-5">
                   <RelicImageArchitecture
