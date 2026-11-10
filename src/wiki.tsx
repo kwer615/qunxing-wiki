@@ -1920,7 +1920,7 @@ export default function App() {
           {/* Ⅲ · 旧神（可折叠大栏目） */}
           <div className="mb-7">
             <button type="button" onClick={() => setOldGodMenuOpen(!oldGodMenuOpen)} className="w-full flex items-center justify-between text-[11px] font-cinzel tracking-[0.25em] text-[#B8965A] uppercase mb-2.5 py-1 hover:text-[#E5C88F] transition-colors"><span className="flex items-center gap-2"><Sparkles className="w-3.5 h-3.5" /><span>Ⅲ · 旧神</span></span>{oldGodMenuOpen ? <ChevronDown className="w-3.5 h-3.5 text-[#B8965A]" /> : <ChevronRight className="w-3.5 h-3.5 text-[#8E8474]" />}</button>
-            {oldGodMenuOpen && (<div className="space-y-1.5 pl-2 border-l border-[#B8965A]/35"><div className="pt-1"><div className="flex items-center justify-between border-b border-[#B8965A]/25"><button type="button" onClick={() => { setOpenOldOnes((p) => ({ ...p, cthanid: true })); navigateTo('old-god-cthanid'); }} className={`flex-1 text-left py-2 px-3 text-xs tracking-wider transition-all flex items-center gap-2 ${activeTab === 'old-god-cthanid' ? 'text-[#E5C88F] font-semibold' : 'text-[#D8D0C1]/85 hover:text-[#E5C88F]'}`}><span className="font-cinzel text-[10px] text-[#B8965A]">01</span><span>克塔尼德 · 极夜沉睡者</span></button><button type="button" onClick={() => toggleOldOne('cthanid')} className="p-1.5 text-[#8E8474] hover:text-[#E5C88F]">{openOldOnes.cthanid ? <ChevronDown className="w-3.5 h-3.5 text-[#B8965A]" /> : <ChevronRight className="w-3.5 h-3.5" />}</button></div>{openOldOnes.cthanid && (<div className="mt-1 ml-3 pl-2.5 border-l border-[#B8965A]/30 space-y-1"><button type="button" onClick={() => navigateTo('old-god-cthanid', 'cthanid-entity-anchor')} className="w-full text-left py-1.5 px-2 text-[11px] text-[#8E8474] hover:text-[#E5C88F]">◈ 本体、极夜与象征</button><button type="button" onClick={() => navigateTo('old-god-cthanid', 'cthanid-blessings-anchor')} className="w-full text-left py-1.5 px-2 text-[11px] text-[#E5C88F] hover:text-[#F2ECE1]">✦ 旧神之赐福</button></div>)}</div></div>)}
+            {oldGodMenuOpen && (<div className="space-y-1.5 pl-2 border-l border-[#B8965A]/35"><button type="button" onClick={() => navigateTo('old-god-general')} className={`w-full text-left py-2 px-3 text-xs tracking-wider transition-all flex items-center justify-between ${activeTab === 'old-god-general' ? 'text-[#E5C88F] bg-gradient-to-r from-[#B8965A]/25 to-transparent border-l-2 border-[#B8965A] -ml-[1px] font-semibold' : 'text-[#8E8474] hover:text-[#D8D0C1]'}`}><span>通用铁律与层次分野</span></button><div className="pt-1"><div className="flex items-center justify-between border-b border-[#B8965A]/25"><button type="button" onClick={() => { setOpenOldOnes((p) => ({ ...p, cthanid: true })); navigateTo('old-god-cthanid'); }} className={`flex-1 text-left py-2 px-3 text-xs tracking-wider transition-all flex items-center gap-2 ${activeTab === 'old-god-cthanid' ? 'text-[#E5C88F] font-semibold' : 'text-[#D8D0C1]/85 hover:text-[#E5C88F]'}`}><span className="font-cinzel text-[10px] text-[#B8965A]">01</span><span>克塔尼德 · 极夜沉睡者</span></button><button type="button" onClick={() => toggleOldOne('cthanid')} className="p-1.5 text-[#8E8474] hover:text-[#E5C88F]">{openOldOnes.cthanid ? <ChevronDown className="w-3.5 h-3.5 text-[#B8965A]" /> : <ChevronRight className="w-3.5 h-3.5" />}</button></div>{openOldOnes.cthanid && (<div className="mt-1 ml-3 pl-2.5 border-l border-[#B8965A]/30 space-y-1"><button type="button" onClick={() => navigateTo('old-god-cthanid', 'cthanid-entity-anchor')} className="w-full text-left py-1.5 px-2 text-[11px] text-[#8E8474] hover:text-[#E5C88F]">◈ 本体、极夜与象征</button><button type="button" onClick={() => navigateTo('old-god-cthanid', 'cthanid-blessings-anchor')} className="w-full text-left py-1.5 px-2 text-[11px] text-[#E5C88F] hover:text-[#F2ECE1]">✦ 旧神之赐福</button></div>)}</div></div>)}
           </div>
           {/* Ⅳ · 地区卷宗（可折叠手风琴） */}
           <div>
@@ -2622,6 +2622,102 @@ export default function App() {
           {activeTab === 'zhaoyeyuan-quests' && (<div className="max-w-5xl mx-auto space-y-8"><header className="border-b border-[#B8965A]/30 pb-6"><p className="font-cinzel text-xs tracking-[0.3em] text-[#B8965A] uppercase mb-2">CHAPTER II · AUTHOR ARCHIVE</p><h2 className="text-3xl font-bold tracking-[0.15em] text-[#F2ECE1]">照夜原旅途纪事（主线/支线）</h2><p className="text-xs text-[#8E8474] mt-2">含剧透。作者层资料，不代表当前聊天已经发生。</p></header><div className="space-y-4">{[['第二章总纲','《无舌铃中的潮声》，天启历104年3月下旬—106年10月，共12节。'],['第一节—第三节','迷雾抵达照夜原、落星办籍、南下枕霞，寻得西境与东境残卷。'],['第四节—第十节','八兽秘境与四圣信物，逐步完成八兽认可；第八节晋升灾临。'],['第十一节—第十二节','沉海教团决战与四城告别；第二章收束。'],['星旅','八位核心女性人物，各有一段独立星旅；东方暮云的性格转变只在完成其专属星旅后发生。'],['地方支线','四段扎根照夜原民俗、长梦人与收容物的地方支线。']].map(([n,d])=>(<div key={n} className="torn-sheet p-5 border-l-2 border-[#B8965A]"><h3 className="text-lg font-bold text-[#E5C88F]">{n}</h3><p className="text-sm text-[#D8D0C1]/90 mt-2 leading-relaxed">{d}</p></div>))}</div></div>)}
           {activeTab === 'eldritch-cthulhu' && (
             <div className="max-w-5xl mx-auto space-y-10"><header className="border-b border-[#8C3B32]/50 pb-8"><p className="font-cinzel text-xs tracking-[0.3em] text-[#C86D5B] uppercase mb-2">GREAT OLD ONE · 02 · CTHULHU</p><h2 className="text-3xl sm:text-4xl font-bold tracking-[0.18em] text-[#F2ECE1]">克苏鲁 · 沉海沉睡者</h2><p className="font-fell italic text-base text-[#E2B49A]/90 leading-relaxed mt-4">“祂在沉海之下沉睡。潮声不是祂醒来的征兆，只是沉睡本身溢出了海面。”</p></header><div className="grid grid-cols-1 md:grid-cols-2 gap-6"><div className="torn-sheet p-7 border-l-2 border-[#8C3B32]"><h3 className="text-lg font-bold text-[#E2B49A] mb-3">✦ 存在方式：沉睡的深海源头</h3><p className="text-sm text-[#D8D0C1]/90 leading-relaxed">克苏鲁沉睡在照夜原国境正中的内海「沉海」之下。祂不回应祈祷，不主动出面，也不因群星归位而推进苏醒。深井、海螺与空坛里的潮声是祂沉睡中的力量外泄，不是祂本人在说话。</p></div><div className="torn-sheet p-7 border-l-2 border-[#B8965A]"><h3 className="text-lg font-bold text-[#E5C88F] mb-3">✦ 世界内认知：极少数人知道</h3><p className="text-sm text-[#D8D0C1]/90 leading-relaxed">照夜原绝大多数人不知道克苏鲁存在，也不知道「旧日支配者」这个名称。唯一明确知道的是里层沉海教团：他们照原典知道真名与祷词。公开海神会与里层教团不是同一层。</p></div></div><div className="torn-sheet p-7 border border-[#B8965A]/30"><h3 className="text-lg font-bold text-[#E5C88F] mb-3">✦ 与原典的关系</h3><p className="text-sm text-[#D8D0C1]/90 leading-relaxed">克苏鲁照原典沉睡于深海、以梦与潮声影响人间、不可被杀。本卡只规定祂沉睡在照夜原沉海之下，并把七项旧日赐福归到祂的象征簇；不新增原典之外的权能，不让祂回应教团祈祷，也不推进群星归位。</p></div><section id="cthulhu-blessings-anchor" className="space-y-6 pt-2"><div className="border-l-2 border-[#B8965A] pl-4"><p className="font-cinzel text-xs tracking-[0.25em] text-[#B8965A] uppercase">BLESSINGS BESTOWED BY CTHULHU&apos;S POLLUTION</p><h3 className="text-2xl sm:text-3xl font-bold tracking-widest text-[#F2ECE1] mt-1">克苏鲁带来的七项赐福及其必然代价</h3><p className="text-xs sm:text-sm text-[#8E8474] mt-2 leading-relaxed">当受染者体内累积的污染突破阈值，克苏鲁的七样象征便在受赐者身上体现为以下七种超自然权能。受赐者能主动运用力量，却不知道力量源于沉海之下的克苏鲁。</p></div><div className="grid grid-cols-1 md:grid-cols-2 gap-7">{CTHULHU_BLESSINGS.map((b)=>{const IconComp=b.icon;return(<div key={b.id} className="torn-sheet p-7 flex flex-col justify-between border-t-2 border-[#8C3B32]/60"><div><div className="flex items-start justify-between gap-4 mb-3"><div><span className="font-cinzel text-[10px] tracking-[0.2em] text-[#C86D5B] block">{b.en}</span><h4 className="text-2xl font-bold tracking-widest text-[#F2ECE1] mt-0.5">赐福 · {b.name}</h4><p className="text-xs text-[#E5C88F] mt-1">{b.subtitle}</p></div><div className="w-10 h-10 border border-[#8C3B32]/50 bg-[#8C3B32]/10 flex items-center justify-center text-[#E2B49A] shrink-0"><IconComp className="w-5 h-5" /></div></div><p className="text-[11px] font-fell italic text-[#B8965A] mb-4 pb-2 border-b border-[#B8965A]/15">{b.originSymbol}</p><div className="space-y-3 text-xs leading-relaxed"><div><span className="text-[#B8965A] font-semibold block mb-1">◈ 权能表现：</span><p className="text-[#D8D0C1]/90">{b.ability}</p></div><div><span className="text-[#8AB4CE] font-semibold block mb-1">◈ 污染加深后的高阶规模：</span><p className="text-[#D8D0C1]/85">{b.scale}</p></div><div className="p-3.5 bg-[#8C3B32]/15 border-l-2 border-[#8C3B32]"><span className="text-[#E2B49A] font-semibold block mb-1">◈ 克苏鲁滞留于身的必然代价：</span><p className="text-[#D8D0C1]/90">{b.cost}</p></div></div></div><div className="mt-5 pt-3 border-t border-[#B8965A]/15 flex items-center justify-between text-xs text-[#8E8474]"><span>照夜原已知受赐者：</span><div className="flex flex-wrap gap-1.5">{b.holders.map(h=><span key={h} className="px-2 py-0.5 bg-[#1B1714] text-[#E5C88F] border border-[#B8965A]/25">{h}</span>)}</div></div></div>);})}</div></section></div>
+          )}
+          {/* -----------------------------------------------------------------
+              旧神：通用铁律与层次分野
+          ----------------------------------------------------------------- */}
+          {activeTab === 'old-god-general' && (
+            <div className="max-w-4xl mx-auto space-y-12">
+              <header className="border-b border-[#B8965A]/50 pb-8">
+                <p className="font-cinzel text-xs tracking-[0.3em] text-[#B8965A] uppercase mb-2">
+                  OLD GOD ARCHIVES · GENERAL LAWS
+                </p>
+                <h2 className="text-3xl sm:text-4xl font-bold tracking-[0.15em] text-[#F2ECE1] mb-4">
+                  旧神 · 通用铁律与层次分野
+                </h2>
+                <p className="text-sm text-[#D8D0C1]/85 leading-relaxed">
+                  本卷宗为全知视角设定档案。世界内一般人不知道「旧神」「旧神眷属」与「克塔尼德」这些名称；沉海教团也不知道旧神一侧。世界内能看到的只是旧神沉睡时漏下的一点痕迹。
+                </p>
+              </header>
+
+              <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="torn-sheet p-7 border-t-2 border-[#B8965A]">
+                  <span className="font-cinzel text-[10px] tracking-[0.25em] text-[#B8965A]">
+                    OLD GOD SIDE · KIN
+                  </span>
+                  <h3 className="text-xl font-bold text-[#F2ECE1] mt-1 mb-3">
+                    旧神眷属（越过人世顶端的个体）
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#D8D0C1]/90 leading-relaxed mb-4">
+                    与旧日眷属同层。力量仍来自体内积累的污染，但旧神一侧的赐福不伤害使用者，也不在发动时增加污染。同一位阶里，他们的生命、SAN 与污染上限是同档的 1.25 倍，赐福规模与强度也更高。
+                    <strong>旧神眷属仍是一个“个体”</strong>，行动有对象与方向，可以被击败、杀死或避开。
+                  </p>
+                  <p className="text-xs text-[#8E8474]">
+                    ※ 代价边界：更强也更显眼。旧日一侧更容易无意识地察觉并追杀他们；受到旧日污染时，污染增量 ×1.25。
+                  </p>
+                </div>
+
+                <div className="torn-sheet p-7 border-t-2 border-[#B8965A]">
+                  <span className="font-cinzel text-[10px] tracking-[0.25em] text-[#B8965A]">
+                    SLEEPING SOURCE · OLD GOD
+                  </span>
+                  <h3 className="text-xl font-bold text-[#E5C88F] mt-1 mb-3">
+                    旧神（沉睡的旧神一侧源头）
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#D8D0C1]/90 leading-relaxed mb-4">
+                    与旧日支配者同层，不是眷属的简单强化版。旧神站在人类一方，不害人，也不向人索取；但祂们同样在沉睡，不出面、不回应、不能被召来，不会醒来救场，也不替人收束危机。
+                  </p>
+                  <p className="text-xs text-[#B8965A]">
+                    ※ 结构铁律：每位旧神皆由「沉睡位置、专属象征簇、专属赐福方向」三要素构成。
+                  </p>
+                </div>
+              </section>
+
+              <OrnamentalDivider label="✦ SEVEN BOUNDARIES OF THE OLD GOD SIDE ✦" />
+
+              <section className="space-y-4">
+                <h3 className="text-xl font-bold tracking-widest text-[#F2ECE1] mb-4">
+                  旧神七大共通边界
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {[
+                    {
+                      name: '一、沉睡',
+                      desc: '旧神和旧日支配者一样在沉睡。世界内看到的影响，只是祂们梦里漏下来的痕迹，不是醒着的行动；复苏不作为近期剧情或倒计时。'
+                    },
+                    {
+                      name: '二、不回应',
+                      desc: '仪式、献祭、祈祷或念对名字，都换不来旧神的行动。自称与旧神立约、受其指派的人，只是在如此宣称。'
+                    },
+                    {
+                      name: '三、不可知',
+                      desc: '任何人都不真正理解旧神的本质与全貌。调查可以查清人间的组织、习俗与后果，却查不清旧神本身。'
+                    },
+                    {
+                      name: '四、不可直视',
+                      desc: '不写可辨认的本体，不替旧神编写性格、计划、情绪与偏好；不以“现身帮助”“显灵指引”的方式让人间得到答案。'
+                    },
+                    {
+                      name: '五、不可名状',
+                      desc: '世界内一般人不知道旧神与克塔尼德的真名。青光、金瞳、守灯、呼名和向阳衾只作为地方习俗与痕迹存在，不自动暴露其来源。'
+                    },
+                    {
+                      name: '六、不可杀死',
+                      desc: '正式达到旧神层次后，受不可被杀死的约束。不设本体战、弱点、封印流程或集齐物品的收束，也不存在“打倒旧神世界就恢复”的结局。'
+                    },
+                    {
+                      name: '七、护佑不代行',
+                      desc: '旧神一侧受赐者受到无意识的护佑，同档更强；旧神不会因此醒来救场。真正行动、承担代价并改变人间后果的，始终是人。'
+                    }
+                  ].map((law, idx) => (
+                    <div key={idx} className="torn-sheet p-5 border-l border-[#B8965A]/60">
+                      <h4 className="text-sm font-bold text-[#E5C88F] mb-1.5">{law.name}</h4>
+                      <p className="text-xs text-[#D8D0C1]/85 leading-relaxed">{law.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            </div>
           )}
           {activeTab === 'old-god-cthanid' && (
             <div className="max-w-5xl mx-auto space-y-10"><header className="border-b border-[#B8965A]/40 pb-8"><p className="font-cinzel text-xs tracking-[0.3em] text-[#B8965A] uppercase mb-2">OLD GOD · 01 · CTHANID</p><h2 className="text-3xl sm:text-4xl font-bold tracking-[0.18em] text-[#F2ECE1]">克塔尼德 · 极夜沉睡者</h2><p className="font-fell italic text-base text-[#E5C88F]/90 leading-relaxed mt-4">“祂不回应，也不睁眼。北天的青光只是沉睡中的旧神投下的一层微光。”</p></header><div className="grid grid-cols-1 md:grid-cols-2 gap-6"><div className="torn-sheet p-7 border-l-2 border-[#B8965A]"><h3 className="text-lg font-bold text-[#E5C88F] mb-3">✦ 存在方式：沉睡的旧神一侧源头</h3><p className="text-sm text-[#D8D0C1]/90 leading-relaxed">克塔尼德本卡规定也在沉睡，不出面、不回应、不能被召来。北天极夜的青光与四项旧神赐福来自祂一侧，但青光不是祂醒来的倒计时。</p></div><div className="torn-sheet p-7 border-l-2 border-[#B8965A]"><h3 className="text-lg font-bold text-[#E5C88F] mb-3">✦ 世界内认知：绝大多数人不知道</h3><p className="text-sm text-[#D8D0C1]/90 leading-relaxed">照夜原绝大多数人不知道旧神、旧神眷属和克塔尼德。旧神一侧受赐者发动没有代价、同阶更强，但更容易被旧日一侧无意识地察觉与追杀。世界内的人只会觉得双方不对劲。</p></div></div><div className="torn-sheet p-7 border border-[#B8965A]/30"><h3 className="text-lg font-bold text-[#E5C88F] mb-3">✦ 五样象征与四项赐福</h3><p className="text-sm text-[#D8D0C1]/90 leading-relaxed">世界内痕迹是极夜青光、金瞳、长夜一灯、呼名、向阳衾。五项象征与四项赐福不是一一对应：招魂、烛照、夜未央、晞共同源于这一侧。克塔尼德照原典为旧神一侧，本卡规定沉睡，不把祂写成会回应的祷词对象。</p></div><section id="cthanid-blessings-anchor" className="space-y-6 pt-2"><div className="border-l-2 border-[#B8965A] pl-4"><p className="font-cinzel text-xs tracking-[0.25em] text-[#B8965A] uppercase">BLESSINGS OF THE OLD GOD SIDE</p><h3 className="text-2xl sm:text-3xl font-bold tracking-widest text-[#F2ECE1] mt-1">克塔尼德一侧的四项赐福</h3><p className="text-xs sm:text-sm text-[#8E8474] mt-2 leading-relaxed">旧神一侧的赐福不伤害使用者，发动不涨污染；同阶更强，却更容易被旧日一侧察觉。</p></div><div className="grid grid-cols-1 md:grid-cols-2 gap-7">{CTHANID_BLESSINGS.map((b)=>{const IconComp=b.icon;return(<div key={b.id} className="torn-sheet p-7 flex flex-col justify-between border-t-2 border-[#B8965A]/60"><div><div className="flex items-start justify-between gap-4 mb-3"><div><span className="font-cinzel text-[10px] tracking-[0.2em] text-[#B8965A] block">{b.en}</span><h4 className="text-2xl font-bold tracking-widest text-[#F2ECE1] mt-0.5">赐福 · {b.name}</h4><p className="text-xs text-[#E5C88F] mt-1">{b.subtitle}</p></div><div className="w-10 h-10 border border-[#B8965A]/50 bg-[#B8965A]/10 flex items-center justify-center text-[#E5C88F] shrink-0"><IconComp className="w-5 h-5" /></div></div><p className="text-[11px] font-fell italic text-[#B8965A] mb-4 pb-2 border-b border-[#B8965A]/15">{b.originSymbol}</p><div className="space-y-3 text-xs leading-relaxed"><div><span className="text-[#B8965A] font-semibold block mb-1">◈ 权能表现：</span><p className="text-[#D8D0C1]/90">{b.ability}</p></div><div><span className="text-[#8AB4CE] font-semibold block mb-1">◈ 污染加深后的高阶规模：</span><p className="text-[#D8D0C1]/85">{b.scale}</p></div><div className="p-3.5 bg-[#B8965A]/10 border-l-2 border-[#B8965A]"><span className="text-[#E5C88F] font-semibold block mb-1">◈ 旧神一侧的代价边界：</span><p className="text-[#D8D0C1]/90">{b.cost}</p></div></div></div><div className="mt-5 pt-3 border-t border-[#B8965A]/15 flex items-center justify-between text-xs text-[#8E8474]"><span>照夜原已知受赐者：</span><div className="flex flex-wrap gap-1.5">{b.holders.map(h=><span key={h} className="px-2 py-0.5 bg-[#1B1714] text-[#E5C88F] border border-[#B8965A]/25">{h}</span>)}</div></div></div>);})}</div></section></div>
