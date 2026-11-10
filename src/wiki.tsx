@@ -2158,19 +2158,17 @@ function RelicImageArchitecture({
 // 3. MAIN APPLICATION
 // ============================================================================
 export default function App() {
-  // 默认打开「恩格萨」以便直接看到恩格萨及其专属六大赐福的美化效果
   const [activeTab, setActiveTab] = useState('world-law');
-  // 旧日支配者手风琴折叠状态（总栏与各个旧日子项均可折叠）
-  const [eldritchMenuOpen, setEldritchMenuOpen] = useState(true);
-  const [oldGodMenuOpen, setOldGodMenuOpen] = useState(true);
-  const [regionMenuOpen, setRegionMenuOpen] = useState(true);
+  const [eldritchMenuOpen, setEldritchMenuOpen] = useState(false);
+  const [oldGodMenuOpen, setOldGodMenuOpen] = useState(false);
+  const [regionMenuOpen, setRegionMenuOpen] = useState(false);
   const [openOldOnes, setOpenOldOnes] = useState({
-    engsa: true,
+    engsa: false,
     nextOldOne: false
   });
-  // 地区卷宗手风琴折叠状态
   const [openRegions, setOpenRegions] = useState({
-    serlan: true,
+    serlan: false,
+    zhaoyeyuan: false,
     region2: false
   });
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -2401,7 +2399,7 @@ export default function App() {
             左侧古籍手风琴导航树
         =================================================================== */}
         <aside
-          className={`fixed lg:sticky top-16 left-0 z-40 w-72 h-[calc(100vh-4rem)] overflow-y-auto bg-[#0E0C0A]/95 lg:bg-transparent border-r border-[#B8965A]/15 px-5 py-7 transition-transform duration-300 ${
+          className={`fixed top-16 left-0 lg:left-[max(0px,calc((100vw-1600px)/2))] z-40 w-72 h-[calc(100vh-4rem)] overflow-y-auto bg-[#0E0C0A]/95 lg:bg-transparent border-r border-[#B8965A]/15 px-5 py-7 transition-transform duration-300 ${
             mobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
           }`}
         >
@@ -2647,7 +2645,7 @@ export default function App() {
         {/* ===================================================================
             右侧主画卷内容区
         =================================================================== */}
-        <main className="flex-1 min-w-0 px-5 sm:px-10 lg:px-14 py-10">
+        <main className="flex-1 min-w-0 px-5 sm:px-10 lg:ml-72 lg:px-14 py-10">
           {/* -----------------------------------------------------------------
               1. 寰宇通则：灾变、常识圈与教团
           ----------------------------------------------------------------- */}
