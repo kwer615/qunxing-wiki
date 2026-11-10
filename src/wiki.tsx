@@ -3265,26 +3265,138 @@ export default function App() {
             <div className="max-w-5xl mx-auto space-y-8">
               <header className="border-b border-[#B8965A]/30 pb-6">
                 <p className="font-cinzel text-xs tracking-[0.3em] text-[#B8965A] uppercase mb-2">TSQ-101 — TSQ-114</p>
-                <h2 className="text-3xl font-bold tracking-[0.15em] text-[#F2ECE1]">照夜原收容物</h2>
-                <p className="text-xs text-[#8E8474] mt-2 leading-relaxed">十四件档案，中文名与英文题名保留。收容等级不写进世界书；本页为作者层资料。</p>
+                <h2 className="text-3xl font-bold tracking-[0.15em] text-[#F2ECE1]">收容物</h2>
+                <p className="text-sm text-[#D8D0C1]/90 mt-4 leading-relaxed"><span className="font-cinzel text-[#E5C88F]">TSQ</span> 取自 <span className="font-fell italic text-[#E5C88F]">The Sidereal Quietus</span>，意为「恒星寂灭／群星沉默之地」，是本作收容物的统一编号前缀。</p>
+                <p className="text-xs text-[#8E8474] mt-2 leading-relaxed">十四件照夜原扇区收容物。中文名与英文题名保留；收容等级只作作者层档案字段，不写入世界书。</p>
               </header>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {ZHAOYEYUAN_CONTAINMENTS.map((item) => (
-                  <div key={item.id} className="torn-sheet p-5 border-t-2 border-[#B8965A]/70">
-                    <p className="font-cinzel text-xs tracking-[0.15em] text-[#B8965A]">{item.id}</p>
-                    <h3 className="text-lg font-bold text-[#F2ECE1] mt-1">{item.name}</h3>
-                    <p className="font-fell italic text-xs text-[#B8965A] mt-1">{item.enName}</p>
-                    <p className="text-xs text-[#D8D0C1]/85 mt-3 leading-relaxed line-clamp-4">{item.appearance}</p>
-                    <p className="text-[11px] text-[#8E8474] mt-3">落点：{item.location}</p>
-                  </div>
+                  <button key={item.id} type="button" onClick={() => setSelectedEntity({ type: 'containment', data: { ...item, kind: '照夜原扇区异常档案', custodian: '照夜原扇区·作者层归档', assistance: '收容与看守记录见档案正文', mechanisms: [{ title: '异常机制', body: item.mechanism }], localNotes: [item.appearance, item.counter] } })} className="torn-sheet p-5 text-left cursor-pointer group hover:-translate-y-1 motion-reduce:transform-none transition-all duration-300 border-t-2 border-[#B8965A]/70 flex flex-col justify-between min-w-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E5C88F]">
+                    <div>
+                      <div className="flex items-center justify-between text-[#B8965A] border-b border-[#B8965A]/20 pb-3 mb-4"><span className="font-cinzel text-xs tracking-[0.15em]">{item.id}</span><Archive className="w-4 h-4 opacity-70" aria-hidden="true" /></div>
+                      <h3 className="text-xl font-bold tracking-wider text-[#F2ECE1] group-hover:text-[#E5C88F] transition-colors break-words">{item.name}</h3>
+                      <p className="font-fell italic text-sm text-[#B8965A] mt-2 leading-relaxed break-words">{item.enName}</p>
+                      <p className="text-xs text-[#8E8474] mt-4 leading-relaxed">照夜原扇区异常档案</p>
+                      <p className="text-xs text-[#D8D0C1]/90 mt-2 leading-relaxed">所在地：{item.location}</p>
+                      <p className="text-sm text-[#D8D0C1]/85 mt-4 line-clamp-3 leading-relaxed">{item.mechanism}</p>
+                    </div>
+                    <div className="mt-5 pt-3 border-t border-[#B8965A]/25 flex items-center justify-between text-xs text-[#E5C88F]"><span>查阅完整档案</span><ChevronRight className="w-4 h-4 shrink-0 group-hover:translate-x-1 transition-transform" aria-hidden="true" /></div>
+                  </button>
                 ))}
               </div>
             </div>
           )}
-          {activeTab === 'zhaoyeyuan-geo' && (<div className="max-w-5xl mx-auto space-y-8"><header className="border-b border-[#B8965A]/30 pb-6"><p className="font-cinzel text-xs tracking-[0.3em] text-[#B8965A] uppercase mb-2">ZHAOYEYUAN GEOGRAPHY</p><h2 className="text-3xl font-bold tracking-[0.15em] text-[#F2ECE1]">照夜原地理、四城与烬铃</h2><p className="text-xs text-[#8E8474] mt-2">四城环绕沉海并立；水路严守「不过中线」，跨城必经换规馆。</p></header><div className="grid grid-cols-1 md:grid-cols-2 gap-5">{[['枕霞','西城，怕躺倒，睡斜榻；梯田伏雾。'],['照水','东城，怕看倒影，湖上不喧哗，用铜镜。'],['听潮','南城，怕安静，满城挂风铃。'],['落星','北城，怕潮湿，不碰水不存水，用融雪与奶。']].map(([n,d])=>(<div key={n} className="torn-sheet p-6 border-l-2 border-[#B8965A]"><h3 className="text-xl font-bold text-[#F2ECE1]">{n}</h3><p className="text-sm text-[#D8D0C1]/90 mt-2 leading-relaxed">{d}</p></div>))}</div></div>)}
-          {activeTab === 'zhaoyeyuan-customs' && (<div className="max-w-5xl mx-auto space-y-8"><header className="border-b border-[#B8965A]/30 pb-6"><p className="font-cinzel text-xs tracking-[0.3em] text-[#B8965A] uppercase mb-2">ZHAOYEYUAN CUSTOMS</p><h2 className="text-3xl font-bold tracking-[0.15em] text-[#F2ECE1]">照夜原四城常识圈与民俗</h2></header><div className="grid grid-cols-1 md:grid-cols-2 gap-5">{[['枕霞 · 睡斜榻','不可白天平躺；夜里睡半坐斜榻。拂晓伏雾贴地下沉。'],['照水 · 铜镜','不看水中倒影；湖上不喧哗，以铜镜代替直接看水。'],['听潮 · 续声','怕安静，满城挂风铃；用全名把活人从潮声中叫回。'],['落星 · 忌湿','不碰水、不存水；进门先掸雪烘衣。']].map(([n,d])=>(<div key={n} className="torn-sheet p-6 border-l-2 border-[#B8965A]"><h3 className="text-lg font-bold text-[#E5C88F]">{n}</h3><p className="text-sm text-[#D8D0C1]/90 mt-2 leading-relaxed">{d}</p></div>))}</div></div>)}
-          {activeTab === 'zhaoyeyuan-orgs' && (<div className="max-w-5xl mx-auto space-y-8"><header className="border-b border-[#B8965A]/30 pb-6"><p className="font-cinzel text-xs tracking-[0.3em] text-[#B8965A] uppercase mb-2">ZHAOYEYUAN ORGANIZATIONS</p><h2 className="text-3xl font-bold tracking-[0.15em] text-[#F2ECE1]">照夜原玉衡会、四机构与民间组织</h2></header><div className="grid grid-cols-1 md:grid-cols-2 gap-5">{[['玉衡会','四城最高协调机构，驻地共议阁；四位城主与四位总负责人共八席。'],['承熙院','户籍、记录与文书。'],['流泉阁','水运与账册。'],['照微台','查案与异常记录。'],['止戈台','武力与治安。'],['海神会','公开民间信仰组织；里层藏有知道克苏鲁真名的沉海教团。'],['换规馆','跨城前学习目的地规矩、换装整备。']].map(([n,d])=>(<div key={n} className="torn-sheet p-5 border-l-2 border-[#B8965A]"><h3 className="text-lg font-bold text-[#E5C88F]">{n}</h3><p className="text-sm text-[#D8D0C1]/90 mt-2 leading-relaxed">{d}</p></div>))}</div></div>)}
-          {activeTab === 'zhaoyeyuan-quests' && (<div className="max-w-5xl mx-auto space-y-8"><header className="border-b border-[#B8965A]/30 pb-6"><p className="font-cinzel text-xs tracking-[0.3em] text-[#B8965A] uppercase mb-2">CHAPTER II · AUTHOR ARCHIVE</p><h2 className="text-3xl font-bold tracking-[0.15em] text-[#F2ECE1]">照夜原旅途纪事（主线/支线）</h2><p className="text-xs text-[#8E8474] mt-2">含剧透。作者层资料，不代表当前聊天已经发生。</p></header><div className="space-y-4">{[['第二章总纲','《无舌铃中的潮声》，天启历104年3月下旬—106年10月，共12节。'],['第一节—第三节','迷雾抵达照夜原、落星办籍、南下枕霞，寻得西境与东境残卷。'],['第四节—第十节','八兽秘境与四圣信物，逐步完成八兽认可；第八节晋升灾临。'],['第十一节—第十二节','沉海教团决战与四城告别；第二章收束。'],['星旅','八位核心女性人物，各有一段独立星旅；东方暮云的性格转变只在完成其专属星旅后发生。'],['地方支线','四段扎根照夜原民俗、长梦人与收容物的地方支线。']].map(([n,d])=>(<div key={n} className="torn-sheet p-5 border-l-2 border-[#B8965A]"><h3 className="text-lg font-bold text-[#E5C88F]">{n}</h3><p className="text-sm text-[#D8D0C1]/90 mt-2 leading-relaxed">{d}</p></div>))}</div></div>)}
+          {activeTab === 'zhaoyeyuan-geo' && (
+            <div className="max-w-5xl mx-auto space-y-12">
+              <header className="border-b border-[#B8965A]/30 pb-6">
+                <p className="font-cinzel text-xs tracking-[0.3em] text-[#B8965A] uppercase mb-2">GEOGRAPHY, COMMON-SENSE RINGS & EMBER BELL</p>
+                <h2 className="text-3xl font-bold tracking-[0.15em] text-[#F2ECE1]">照夜原地理、四城与烬铃</h2>
+                <p className="text-xs sm:text-sm text-[#8E8474] mt-2 leading-relaxed">大陆东端，国中为沉海，四城分居四面：西枕霞、东照水、南听潮、北落星。四城并立，共用玉衡会与四类共同机构，人口约一千八百万。</p>
+              </header>
+              <section className="space-y-4">
+                <h3 className="text-xl font-bold tracking-widest text-[#E5C88F]">✦ 四城所处的四个常识圈</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {[
+                    { zone:'枕霞圈（西，梯田水田）', valid:'纸、竹、药、手工', invalid:'船与临水俯视', anomaly:'满田都是倒影，照水人到此寸步难行；白天躺倒会引来下沉压迫。' },
+                    { zone:'照水圈（东，湖区水乡）', valid:'船、丝、书院', invalid:'看水中倒影、湖上喧哗', anomaly:'铜镜可替代直接看水；临水装卸用手势，船上低声说话。' },
+                    { zone:'听潮圈（南，海湾港城）', valid:'乐器、航海、口授手艺', invalid:'安静与长篇阅读', anomaly:'整城挂风铃；静下来的人会不自觉往海边走，守夜人靠声音续路。' },
+                    { zone:'落星圈（北，雪原冰城）', valid:'马、弓、草药、融雪与奶', invalid:'徒手浸水、存水与潮湿衣被', anomaly:'入门先掸雪烘衣；融雪随用随取，屋内不留水缸。' }
+                  ].map((z)=>(<div key={z.zone} className="torn-sheet p-6 border-t border-[#B8965A]/40 space-y-2.5"><h4 className="text-lg font-bold text-[#F2ECE1]">{z.zone}</h4><p className="text-xs text-[#8AB4CE]"><strong>✔ 成立器物：</strong>{z.valid}</p><p className="text-xs text-[#E2B49A]"><strong>✘ 失效或危险：</strong>{z.invalid}</p><p className="text-xs text-[#D8D0C1]/85 leading-relaxed pt-2 border-t border-[#B8965A]/15">{z.anomaly}</p></div>))}
+                </div>
+              </section>
+              <OrnamentalDivider label="✦ EMBER BELL & DAILY LIFE ✦" />
+              <section className="torn-sheet p-7 border-l-2 border-[#B8965A]">
+                <h3 className="text-xl font-bold tracking-widest text-[#E5C88F] mb-3">✦ 四城通用货币：烬铃</h3>
+                <p className="text-xs text-[#D8D0C1]/90 leading-relaxed mb-5">扁平铃铛形金属币，内无铃舌，摇之不响，平时串在红绳上。它没有声音，交易时只留下金属摩挲的闷响。</p>
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 text-center">
+                  {[{k:'形制',v:'扁平铃形'},{k:'内部',v:'无铃舌'},{k:'携带',v:'红绳串带'},{k:'流通',v:'四城通用'},{k:'声音',v:'不响'},{k:'称呼',v:'烬铃'}].map((x)=><div key={x.k} className="p-3.5 bg-[#0B0A09]/80 border border-[#B8965A]/20"><p className="text-xs text-[#8E8474] mb-1">{x.k}</p><p className="text-sm font-bold text-[#E5C88F]">{x.v}</p></div>)}
+                </div>
+              </section>
+              <section className="grid grid-cols-1 md:grid-cols-2 gap-7">
+                <div className="torn-sheet p-7 border-l-2 border-[#8AB4CE]"><h3 className="text-lg font-bold text-[#8AB4CE] mb-3">地理与气候</h3><p className="text-xs sm:text-sm text-[#D8D0C1]/90 leading-relaxed">沉海居中，西部丘陵渐入山岭，东方河网连着湖群，南方海湾通往外海，北方是风雪辽阔的雪原。冬至前后九夜最冷、最暗，北方青光也在这几夜出现。</p></div>
+                <div className="torn-sheet p-7 border-l-2 border-[#B8965A]"><h3 className="text-lg font-bold text-[#E5C88F] mb-3">交通与往来</h3><p className="text-xs sm:text-sm text-[#D8D0C1]/90 leading-relaxed">陆路绕沉海相连，跨城主要路口设换规馆。水路沿沉海岸边、湖群与海湾行走，船家守「不过中线」；跨常识圈时常要换陆路。</p></div>
+              </section>
+            </div>
+          )}
+          {activeTab === 'zhaoyeyuan-customs' && (
+            <div className="max-w-4xl mx-auto space-y-10">
+              <header className="border-b border-[#8C3B32]/50 pb-6">
+                <p className="font-cinzel text-xs tracking-[0.3em] text-[#C86D5B] uppercase mb-2">SEASONAL CUSTOMS, NAMES & COMMON-SENSE RINGS</p>
+                <h2 className="text-3xl font-bold tracking-[0.15em] text-[#F2ECE1]">四城常识圈与民俗</h2>
+                <p className="text-xs text-[#8E8474] mt-2 leading-relaxed">照夜原的规矩不是仪式表，而是各地在长梦里活下来的日常做法。老户只知现象与做法，不知道更深来源。</p>
+              </header>
+              <div className="space-y-6">
+                {[
+                  { num:'一', title:'冬至守夜', symbol:'极夜青光', rule:'前后九夜守青光，晾被褥与亡人衣，守夜人隔一个时辰叫一遍全名。', surface:'落星最亮，枕霞次之，听潮雾天几乎看不见；来客也要备暖屋、柴炭与干衣。', deep:'错过的年份梦会更深。青光只能让人轻一些，不替人驱寒，也救不回已经走进水里的人。' },
+                  { num:'二', title:'衣箱', symbol:'沁衣', rule:'亡人的衣裳不入殓，先收进干燥衣箱，等冬至在青光下晾过一夜再烧。', surface:'衣箱放在高处，不靠墙上的水痕；旧衣不传给下一辈。', deep:'穿惯带凉意的旧衣，人会睡得更沉，叫醒要费的工夫一天比一天长。' },
+                  { num:'三', title:'换衾', symbol:'向阳衾', rule:'逢年过节给长梦人换上晾过青光的被褥，清明最隆重。', surface:'换下的旧衾不再盖人，收进衣箱，等冬至再晾。', deep:'向阳衾只能让人睡得浅一些，效力到下一个冬至就淡；它叫不醒已经走得太远的长梦人。' },
+                  { num:'四', title:'回门宴', symbol:'偶然醒来', rule:'长梦人偶尔自己醒来，家里在祠堂摆宴，四城都认这个规矩。', surface:'醒来的人由远亲也赶来相见；回门宴稀罕而隆重。', deep:'醒来不能强求，赐福也做不到。回门宴不是治愈证明，只是这一次人真的回来了。' },
+                  { num:'五', title:'清明对名', symbol:'呼名', rule:'一家人当面把彼此的全名对一遍，也对着长梦人念。', surface:'长辈念，晚辈应；这一年改名、成亲、添了孩子，都要在这天告诉亲族。', deep:'全名是叫回人的最后凭据。没人知道你的全名，你掉进梦里，就没人叫得回。' },
+                  { num:'六', title:'择地', symbol:'旧潮', rule:'宅基选高处，避开有旧潮的老宅；门尽量朝北。', surface:'先看墙根水痕，过膝的宅子没人肯住；家具做高脚，水痕下不安床、不放米缸。', deep:'长年睡在水痕下的人，梦一年比一年深；墙上的痕迹不会因为刷白灰就消失。' },
+                  { num:'七', title:'起全名与婚嫁', symbol:'全名', rule:'孩子满月时在青光下轮流念全名；跨城嫁娶前，双方先学住处规矩。', surface:'日常叫小名，全名由亲近家人记住；嫁妆里必有向阳衾，各城再添当地适用之物。', deep:'结亲不只是交换财礼，还要让新亲知道怎样叫醒对方。出嫁不等于自动适应另一个常识圈。' },
+                  { num:'八', title:'待客与换规', symbol:'常识圈交界', rule:'客人安顿前先讲明当地要紧规矩，再安排吃住。', surface:'枕霞给斜榻，照水领人离开临水俯视处，听潮说明夜间续声，落星先换湿衣烘靴。', deep:'外乡人不懂时先教，不把所有失礼都当成危险。木牌只是提醒凭据，不是免受污染的护符。' }
+                ].map((c)=>(<div key={c.num} className="torn-sheet p-7 border-l-2 border-[#B8965A]/70"><div className="flex flex-wrap items-baseline justify-between gap-2 mb-3"><h3 className="text-xl font-bold tracking-widest text-[#F2ECE1]"><span className="font-cinzel text-[#B8965A] mr-2">{c.num}.</span>{c.title}</h3><span className="text-xs font-fell italic text-[#B8965A]">{c.symbol}</span></div><p className="text-xs sm:text-sm text-[#E5C88F] mb-4"><strong>照夜原的规矩：</strong>{c.rule}</p><div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs leading-relaxed"><div className="p-4 bg-[#0B0A09]/70 border-l border-[#5B7E96]"><span className="text-[#8AB4CE] font-semibold block mb-1">◈ 街坊看得见的做法：</span><p className="text-[#D8D0C1]/85">{c.surface}</p></div><div className="p-4 bg-[#8C3B32]/15 border-l border-[#8C3B32]"><span className="text-[#E2B49A] font-semibold block mb-1">◈ 不照做时的后果：</span><p className="text-[#D8D0C1]/90">{c.deep}</p></div></div></div>))}
+              </div>
+            </div>
+          )}
+          {activeTab === 'zhaoyeyuan-orgs' && (
+            <div className="max-w-5xl mx-auto space-y-12">
+              <header className="border-b border-[#B8965A]/30 pb-6"><p className="font-cinzel text-xs tracking-[0.3em] text-[#B8965A] uppercase mb-2">INSTITUTIONS OF ZHAOYEYUAN</p><h2 className="text-3xl font-bold tracking-[0.15em] text-[#F2ECE1]">玉衡会、四机构与民间组织</h2><p className="text-xs text-[#8E8474] mt-2 leading-relaxed">四城没有共主。最高共同机构为玉衡会，由四位常驻城主与四位机构总负责人组成八席；四城仍通婚、合办学堂，灾年互相救济。</p></header>
+              <section className="grid grid-cols-1 md:grid-cols-2 gap-7">
+                <div className="torn-sheet p-7 border-t-2 border-[#8C3B32]"><h3 className="text-xl font-bold text-[#E2B49A] mb-3">✦ 玉衡会（四城最高协调机构）</h3><p className="text-xs sm:text-sm text-[#D8D0C1]/90 leading-relaxed mb-3">驻地共议阁，独立于四城，不另建第五座大城。四位城主与承熙院、流泉阁、照微台、止戈台四位总负责人共八席。</p><p className="text-xs text-[#8E8474] leading-relaxed">协理不占席；重大事务由八席共同协调，四城分部负责当地日常事务。</p></div>
+                <div className="torn-sheet p-7 border-t-2 border-[#B8965A]"><h3 className="text-xl font-bold text-[#E5C88F] mb-3">✦ 四类共同机构</h3><p className="text-xs sm:text-sm text-[#D8D0C1]/90 leading-relaxed mb-3">承熙院管城务与户籍，流泉阁管钱粮与运输，照微台管刑律与查案，止戈台管驻军与城防。</p><p className="text-xs text-[#8E8474] leading-relaxed">四城各设分部；总负责人常驻共议阁，基层仍按总负责人、协理、城分部主事、基层属员四层办事。</p></div>
+              </section>
+              <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {[{name:'承熙院',duty:'户籍田土、公共营造、医养文教与日常救济'},{name:'流泉阁',duty:'钱粮税赋、储备商贸、船运与车队调度'},{name:'照微台',duty:'刑律巡卫、查案、纠纷裁断与异常记录'},{name:'止戈台',duty:'驻军城防、训练、军需与对外兵备'}].map((o)=><div key={o.name} className="torn-sheet p-6 border-l border-[#B8965A]/40"><h4 className="text-base font-bold text-[#F2ECE1]">{o.name}</h4><p className="text-xs text-[#D8D0C1]/85 leading-relaxed mt-3">{o.duty}</p></div>)}
+              </section>
+              <OrnamentalDivider label="✦ LOCAL ASSOCIATIONS & COMMON LIFE ✦" />
+              <section className="grid grid-cols-1 md:grid-cols-2 gap-7">
+                {[
+                  {name:'换规馆',tag:'跨城路口',text:'学习目的地规矩、换装整备，也供同行者歇脚。木牌写清当地关键规矩，出城交回；教习会演示斜榻、收铃、干衣与避看倒影。'},
+                  {name:'守梦会',tag:'民间互助',text:'四城都有，照看长梦人。按时叫全名，记下枕盐、体温与梦深变化；冬至把长梦人抬到院里晒青光，逢年过节换衾。'},
+                  {name:'守夜人',tag:'夜巡点名',text:'起于落星，如今四城都有，金瞳者多。冬至守夜时带队巡街，一夜叫几轮全名，记下谁叫不醒、谁的梦更深。'},
+                  {name:'海神会',tag:'公开与里层',text:'公开部分是寻常海神信仰，出海前祭、收渔获时谢；里层藏着知道克苏鲁真名的沉海教团，二者不能混为一层。'}
+                ].map((o)=><div key={o.name} className="torn-sheet p-7 border-l-2 border-[#B8965A]/70"><div className="flex items-baseline justify-between gap-3"><h3 className="text-xl font-bold text-[#F2ECE1]">{o.name}</h3><span className="text-xs text-[#B8965A]">{o.tag}</span></div><p className="text-sm text-[#D8D0C1]/90 mt-3 leading-relaxed">{o.text}</p></div>)}
+              </section>
+            </div>
+          )}
+          {activeTab === 'zhaoyeyuan-quests' && (() => {
+            const sections = [
+              ['第一节','提灯鹿角挑起的夜','天启历104年4月上旬','荒草带 → 落星城','东方暮云','离常','迷雾把旅途截断在照夜原；玩家初遇东方暮云与 TSQ-101，并在落星办理身份。'],
+              ['第二节','把名字留在暴雪降临前','天启历104年5月—7月','落星城与北境支路','萧令仪、叶听雪、陈烬、裴知微','离常','暖屋融雪导出槽与雪蛭伏击；玩家在支路救援中发现西境古籍残卷。'],
+              ['第三节','半倚斜榻听山雾下沉','天启历104年9月—11月','换规馆 → 枕霞城','慕容清、秦照眠雪、白蘅芜、尉迟照、顾青梧','离常','查到沉海教团外围人员借伏雾与孵梦灰囊转运长梦人，并寻获东境残卷。'],
+              ['第四节','白石敛寒芒，千根托山岳','天启历105年1月—2月','白虎秘境 → 梼杌秘境','慕容清、白虎、梼杌','离常','玩家与慕容清孤身入山，在两次生死试炼中取得西圣与西凶的认可。'],
+              ['第五节','铜镜背面，水巷无声','天启历105年4月—6月','换规馆 → 照水城','兰墨灵、柳知渡川、沈砚秋、商婉宁、上官闻舟','离常','查船货与亡人旧衣，截住教团暗桩，并打捞南境古籍残卷。'],
+              ['第六节','云海引惊蛰，归墟赴百味','天启历105年8月','青龙秘境 → 饕餮秘境','兰墨灵、青龙、饕餮','离常','玩家与兰墨灵闯过东圣与东凶秘境，取得两组认可。'],
+              ['第七节','满城风铃压不住的潮声','天启历105年10月—11月','换规馆 → 听潮城','潮、殷潮生、闻素、沈雾、谢停云、岳沉霜','离常','暗巷消音伏击、外海呼名之塔与旧祭船底舱，北境残卷集齐。'],
+              ['第八节','盐壳裂开时涌入的活水','天启历106年1月','废弃盐场与引淡石闸','闻素','离常 → 灾临','负盐多足脊围困盐工；玩家引淡破壳，在生死一线晋升灾临。'],
+              ['第九节','踏火登赤霄，叩石应重山','天启历106年3月—4月','朱雀秘境 → 混沌秘境','潮、朱雀、混沌','灾临','玩家与潮取得南圣与南凶认可，八兽借力继续集齐。'],
+              ['第十节','潜渊拔骨楔，断鸿逆风猎','天启历106年6月—7月','玄武秘境 → 穷奇秘境','东方暮云、玄武、穷奇','灾临','北境秘境与断鸿梁试炼完成，八兽全部认可玩家。'],
+              ['第十一节','黎明前收起浸盐的帆','天启历106年9月','共议阁与沉海边缘','玉衡会八席、四城机构与民间组织','灾临','四城合围沉海教团，公开海神会与里层教团切割；教团真名没有换回任何回应。'],
+              ['第十二节','佩一枚无声的铃远行','天启历106年10月','四城告别路线','四城城主、八兽与友人','灾临','沉海教团覆灭，四城重归安稳；玩家带无舌烬铃与八兽印记重新启程。']
+            ];
+            const stars = [['星旅其一','慕容清 · 藕荷裙畔的守岁灯','枕霞城 / 慕容清'],['星旅其二','兰墨灵 · 烟雨乌篷下的逃学城主','照水城 / 兰墨灵'],['星旅其三','潮 · 风铃声里被叫醒的真名','听潮城 / 潮'],['星旅其四','东方暮云 · 走过千遍昨日的雪，与你共赴明日的春','落星城 / 东方暮云'],['星旅其五','沈砚秋 · 炭笔末页的未眠人','照水守梦会 / 沈砚秋'],['星旅其六','石晚潮音 · 换规馆打烊后的留名牌','换规馆 / 石晚潮音'],['星旅其七','公孙问路 · 梦里先走过一遍的岔路','换规馆 / 公孙问路'],['星旅其八','沈雾 · 替她分清哪一场是人间','海神会 / 沈雾']];
+            const locals = [['支线其一','三户青光缝一床向阳衾','落星城 / 冬至晾衾'],['支线其二','撤席在天亮之前的回门宴','枕霞城 / 长梦人'],['支线其三','清明对名册上空出的一行','四城 / 清明对名'],['支线其四','路灯下替你挡风的第二道影','照水城 / TSQ-105']];
+            return (
+              <div className="max-w-5xl mx-auto space-y-12">
+                <header className="border-b border-[#B8965A]/30 pb-6"><p className="font-cinzel text-xs tracking-[0.3em] text-[#B8965A] uppercase mb-2">CHRONICLES OF THE SUNKEN SEA</p><h2 className="text-3xl font-bold tracking-[0.15em] text-[#F2ECE1]">旅途纪事 · 第二章主线与支线</h2><p className="text-xs text-[#8E8474] mt-2">含剧透。作者层资料，不代表当前聊天已经发生。</p></header>
+                <section className="space-y-6">
+                  <div><h3 className="text-2xl font-bold tracking-widest text-[#E5C88F]">✦ 第二章《无舌铃中的潮声》</h3><p className="text-xs text-[#8E8474] mt-1">天启历104年4月—106年10月｜12节主线｜唯一位阶晋升：离常 → 灾临</p></div>
+                  <div className="torn-sheet p-6">
+                    <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-2 mb-6">
+                      {sections.map((s, idx) => <button key={s[0]} type="button" onClick={() => setActiveSectionIdx(idx)} className={`p-2.5 text-left transition-all border-l-2 ${activeSectionIdx === idx ? 'bg-[#B8965A]/20 border-[#B8965A] text-[#F2ECE1]' : 'bg-[#0B0A09]/60 border-[#8E8474]/20 text-[#8E8474] hover:text-[#D8D0C1]'}`}><span className="block text-[10px] font-cinzel">{s[0]}</span><span className="block text-xs font-bold truncate mt-0.5">{s[1]}</span></button>)}
+                    </div>
+                    {(() => { const cur = sections[Math.min(activeSectionIdx, sections.length - 1)]; return <div className="p-6 bg-[#0B0A09]/85 border-t border-[#B8965A]/30 space-y-4"><div className="flex flex-wrap items-baseline justify-between gap-2"><h4 className="text-2xl font-bold tracking-widest text-[#F2ECE1]">{cur[0]} · 《{cur[1]}》</h4><span className="text-xs font-cinzel text-[#B8965A]">{cur[2]}</span></div><div className="flex flex-wrap gap-4 text-xs text-[#8AB4CE]"><span>◈ 地点：{cur[3]}</span><span>◈ 现场核心：{cur[4]}</span><span>◈ 玩家位阶：{cur[5]}</span></div><p className="text-sm text-[#D8D0C1]/90 leading-relaxed pt-2 border-t border-[#B8965A]/15">{cur[6]}</p></div>; })()}
+                  </div>
+                </section>
+                <OrnamentalDivider label="✦ STAR JOURNEYS & LOCAL TALES (BRIEF) ✦" />
+                <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="space-y-4"><div><h3 className="text-xl font-bold tracking-widest text-[#E5C88F]">✦ 星旅支线（共8段）</h3><p className="text-xs text-[#8E8474] mt-1">仅列任务名称与接取地点 / 相关人。</p></div><div className="space-y-2.5">{stars.map((sj)=><div key={sj[0]} className="torn-strip p-4 flex flex-col gap-1"><div className="flex items-center justify-between"><span className="text-sm font-bold text-[#F2ECE1] tracking-wider">{sj[1]}</span><span className="font-cinzel text-[10px] text-[#B8965A]">{sj[0]}</span></div><p className="text-xs text-[#8E8474] flex items-center gap-1.5"><MapPin className="w-3 h-3 text-[#B8965A] shrink-0" /><span>接取地点 / 相关人：{sj[2]}</span></p></div>)}</div></div>
+                  <div className="space-y-4"><div><h3 className="text-xl font-bold tracking-widest text-[#8AB4CE]">✦ 照夜原地方支线（共4段）</h3><p className="text-xs text-[#8E8474] mt-1">紧扣民俗、长梦人与收容物的民间委托。</p></div><div className="space-y-2.5">{locals.map((lq)=><div key={lq[0]} className="torn-strip p-4 flex flex-col gap-1"><div className="flex items-center justify-between"><span className="text-sm font-bold text-[#F2ECE1] tracking-wider">{lq[1]}</span><span className="font-cinzel text-[10px] text-[#8AB4CE]">{lq[0]}</span></div><p className="text-xs text-[#8E8474] flex items-center gap-1.5"><MapPin className="w-3 h-3 text-[#8AB4CE] shrink-0" /><span>接取地点 / 触发物：{lq[2]}</span></p></div>)}</div></div>
+                </section>
+              </div>
+            );
+          })()}
           {activeTab === 'eldritch-cthulhu' && (
             <div className="max-w-5xl mx-auto space-y-10"><header className="border-b border-[#8C3B32]/50 pb-8"><p className="font-cinzel text-xs tracking-[0.3em] text-[#C86D5B] uppercase mb-2">GREAT OLD ONE · 02 · CTHULHU</p><h2 className="text-3xl sm:text-4xl font-bold tracking-[0.18em] text-[#F2ECE1]">克苏鲁 · 沉海沉睡者</h2><p className="font-fell italic text-base text-[#E2B49A]/90 leading-relaxed mt-4">“祂在沉海之下沉睡。潮声不是祂醒来的征兆，只是沉睡本身溢出了海面。”</p></header><div className="grid grid-cols-1 md:grid-cols-2 gap-6"><div className="torn-sheet p-7 border-l-2 border-[#8C3B32]"><h3 className="text-lg font-bold text-[#E2B49A] mb-3">✦ 存在方式：沉睡的深海源头</h3><p className="text-sm text-[#D8D0C1]/90 leading-relaxed">克苏鲁沉睡在照夜原国境正中的内海「沉海」之下。祂不回应祈祷，不主动出面，也不因群星归位而推进苏醒。深井、海螺与空坛里的潮声是祂沉睡中的力量外泄，不是祂本人在说话。</p></div><div className="torn-sheet p-7 border-l-2 border-[#B8965A]"><h3 className="text-lg font-bold text-[#E5C88F] mb-3">✦ 世界内认知：极少数人知道</h3><p className="text-sm text-[#D8D0C1]/90 leading-relaxed">照夜原绝大多数人不知道克苏鲁存在，也不知道「旧日支配者」这个名称。唯一明确知道的是里层沉海教团：他们照原典知道真名与祷词。公开海神会与里层教团不是同一层。</p></div></div><div className="torn-sheet p-7 border border-[#B8965A]/30"><h3 className="text-lg font-bold text-[#E5C88F] mb-3">✦ 与原典的关系</h3><p className="text-sm text-[#D8D0C1]/90 leading-relaxed">克苏鲁照原典沉睡于深海、以梦与潮声影响人间、不可被杀。本卡只规定祂沉睡在照夜原沉海之下，并把七项旧日赐福归到祂的象征簇；不新增原典之外的权能，不让祂回应教团祈祷，也不推进群星归位。</p></div><section id="cthulhu-blessings-anchor" className="space-y-6 pt-2"><div className="border-l-2 border-[#B8965A] pl-4"><p className="font-cinzel text-xs tracking-[0.25em] text-[#B8965A] uppercase">BLESSINGS BESTOWED BY CTHULHU&apos;S POLLUTION</p><h3 className="text-2xl sm:text-3xl font-bold tracking-widest text-[#F2ECE1] mt-1">克苏鲁带来的七项赐福及其必然代价</h3><p className="text-xs sm:text-sm text-[#8E8474] mt-2 leading-relaxed">当受染者体内累积的污染突破阈值，克苏鲁的七样象征便在受赐者身上体现为以下七种超自然权能。受赐者能主动运用力量，却不知道力量源于沉海之下的克苏鲁。</p></div><div className="grid grid-cols-1 md:grid-cols-2 gap-7">{CTHULHU_BLESSINGS.map((b)=>{const IconComp=b.icon;return(<div key={b.id} className="torn-sheet p-7 flex flex-col justify-between border-t-2 border-[#8C3B32]/60"><div><div className="flex items-start justify-between gap-4 mb-3"><div><span className="font-cinzel text-[10px] tracking-[0.2em] text-[#C86D5B] block">{b.en}</span><h4 className="text-2xl font-bold tracking-widest text-[#F2ECE1] mt-0.5">赐福 · {b.name}</h4><p className="text-xs text-[#E5C88F] mt-1">{b.subtitle}</p></div><div className="w-10 h-10 border border-[#8C3B32]/50 bg-[#8C3B32]/10 flex items-center justify-center text-[#E2B49A] shrink-0"><IconComp className="w-5 h-5" /></div></div><p className="text-[11px] font-fell italic text-[#B8965A] mb-4 pb-2 border-b border-[#B8965A]/15">{b.originSymbol}</p><div className="space-y-3 text-xs leading-relaxed"><div><span className="text-[#B8965A] font-semibold block mb-1">◈ 权能表现：</span><p className="text-[#D8D0C1]/90">{b.ability}</p></div><div><span className="text-[#8AB4CE] font-semibold block mb-1">◈ 污染加深后的高阶规模：</span><p className="text-[#D8D0C1]/85">{b.scale}</p></div><div className="p-3.5 bg-[#8C3B32]/15 border-l-2 border-[#8C3B32]"><span className="text-[#E2B49A] font-semibold block mb-1">◈ 克苏鲁滞留于身的必然代价：</span><p className="text-[#D8D0C1]/90">{b.cost}</p></div></div></div><div className="mt-5 pt-3 border-t border-[#B8965A]/15 flex items-center justify-between text-xs text-[#8E8474]"><span>照夜原已知受赐者：</span><div className="flex flex-wrap gap-1.5">{b.holders.map(h=><span key={h} className="px-2 py-0.5 bg-[#1B1714] text-[#E5C88F] border border-[#B8965A]/25">{h}</span>)}</div></div></div>);})}</div></section></div>
           )}
