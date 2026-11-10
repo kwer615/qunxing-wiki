@@ -3207,31 +3207,28 @@ export default function App() {
               </div>
             </div>
           )}
-          {activeTab === 'zhaoyeyuan-containments' && (
-            <div className="max-w-5xl mx-auto space-y-8">
-              <header className="border-b border-[#B8965A]/30 pb-6">
-                <p className="font-cinzel text-xs tracking-[0.3em] text-[#B8965A] uppercase mb-2">TSQ-101 — TSQ-114</p>
-                <h2 className="text-3xl font-bold tracking-[0.15em] text-[#F2ECE1]">收容物</h2>
-                <p className="text-sm text-[#D8D0C1]/90 mt-4 leading-relaxed"><span className="font-cinzel text-[#E5C88F]">TSQ</span> 取自 <span className="font-fell italic text-[#E5C88F]">The Sidereal Quietus</span>，意为「恒星寂灭／群星沉默之地」，是本作收容物的统一编号前缀。</p>
-                <p className="text-xs text-[#8E8474] mt-2 leading-relaxed">十四件照夜原扇区收容物。中文名与英文题名保留；收容等级只作作者层档案字段，不写入世界书。</p>
-              </header>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {ZHAOYEYUAN_CONTAINMENTS.map((item) => (
-                  <button key={item.id} type="button" onClick={() => setSelectedEntity({ type: 'containment', data: { ...item, kind: '照夜原扇区异常档案', custodian: '照夜原扇区·作者层归档', assistance: '收容与看守记录见档案正文', mechanisms: [{ title: '异常机制', body: item.mechanism }], localNotes: [item.appearance, item.counter] } })} className="torn-sheet p-5 text-left cursor-pointer group hover:-translate-y-1 motion-reduce:transform-none transition-all duration-300 border-t-2 border-[#B8965A]/70 flex flex-col justify-between min-w-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E5C88F]">
-                    <div>
-                      <div className="flex items-center justify-between text-[#B8965A] border-b border-[#B8965A]/20 pb-3 mb-4"><span className="font-cinzel text-xs tracking-[0.15em]">{item.id}</span><Archive className="w-4 h-4 opacity-70" aria-hidden="true" /></div>
-                      <h3 className="text-xl font-bold tracking-wider text-[#F2ECE1] group-hover:text-[#E5C88F] transition-colors break-words">{item.name}</h3>
-                      <p className="font-fell italic text-sm text-[#B8965A] mt-2 leading-relaxed break-words">{item.enName}</p>
-                      <p className="text-xs text-[#8E8474] mt-4 leading-relaxed">照夜原扇区异常档案</p>
-                      <p className="text-xs text-[#D8D0C1]/90 mt-2 leading-relaxed">所在地：{item.location}</p>
-                      <p className="text-sm text-[#D8D0C1]/85 mt-4 line-clamp-3 leading-relaxed">{item.mechanism}</p>
-                    </div>
-                    <div className="mt-5 pt-3 border-t border-[#B8965A]/25 flex items-center justify-between text-xs text-[#E5C88F]"><span>查阅完整档案</span><ChevronRight className="w-4 h-4 shrink-0 group-hover:translate-x-1 transition-transform" aria-hidden="true" /></div>
-                  </button>
-                ))}
+          {activeTab === 'zhaoyeyuan-containments' && (() => {
+            const kinds = {
+              'TSQ-101':'异化生物 / 记忆燃料器官','TSQ-102':'异常器物 / 局部白昼锁定','TSQ-103':'空间折跃 / 纯白城市剪影','TSQ-104':'旧日造物 / 夜幕织物','TSQ-105':'概念实体 / 共生阴影','TSQ-106':'生态现象 / 深梦露水','TSQ-107':'重力与血液异象 / 双月暗涌','TSQ-108':'次声波地形 / 玄武岩共振','TSQ-109':'趋光异化昆虫 / 熄灭火芯','TSQ-110':'反重力建筑空间 / 死循环钟楼','TSQ-111':'拟态声学活雾 / 旧声诱捕','TSQ-112':'类人异化个体 / 地形定义','TSQ-113':'扭曲引力结晶 / 空间锁死','TSQ-114':'地质脉动 / 沉睡节律'
+            };
+            return (
+              <div className="space-y-8">
+                <header className="border-b border-[#B8965A]/30 pb-6">
+                  <h2 className="text-3xl font-bold tracking-[0.15em] text-[#F2ECE1]">收容物</h2>
+                  <p className="text-sm text-[#D8D0C1]/90 mt-4 leading-relaxed"><span className="font-cinzel text-[#E5C88F]">TSQ</span> 取自 <span className="font-fell italic text-[#E5C88F]">The Sidereal Quietus</span>，意为「恒星寂灭／群星沉默之地」，是本作收容物的统一编号前缀。</p>
+                  <p className="text-xs text-[#8E8474] mt-2 leading-relaxed">十四件收容物散布于照夜原扇区。查阅档案，了解它们的异常机制、所在地与看守方式。</p>
+                </header>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {ZHAOYEYUAN_CONTAINMENTS.map((item) => { const view = { ...item, kind: kinds[item.id] || '照夜原扇区异常档案', region: 'zhaoyeyuan', custodian: '照夜原扇区·作者层归档', assistance: '收容与看守记录见档案正文', mechanisms: [{ title: '异常机制', body: item.mechanism }], localNotes: [item.appearance, item.counter] }; return (
+                    <button key={item.id} type="button" aria-label={`查阅 ${item.id} ${item.name}`} onClick={() => setSelectedEntity({ type: 'containment', data: view })} className="torn-sheet p-5 text-left cursor-pointer group hover:-translate-y-1 motion-reduce:transform-none transition-all duration-300 border-t-2 border-[#B8965A]/70 flex flex-col justify-between min-w-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E5C88F]">
+                      <div><div className="flex items-center justify-between text-[#B8965A] border-b border-[#B8965A]/20 pb-3 mb-4"><span className="font-cinzel text-xs tracking-[0.15em]">{item.id}</span><Archive className="w-4 h-4 opacity-70" aria-hidden="true" /></div><h3 className="text-xl font-bold tracking-wider text-[#F2ECE1] group-hover:text-[#E5C88F] transition-colors break-words">{item.name}</h3><p className="font-fell italic text-sm text-[#B8965A] mt-2 leading-relaxed break-words">{item.enName}</p><p className="text-xs text-[#8E8474] mt-4 leading-relaxed">{view.kind}</p><p className="text-xs text-[#D8D0C1]/90 mt-2 leading-relaxed">所在地：{item.location}</p><p className="text-sm text-[#D8D0C1]/85 mt-4 line-clamp-3 leading-relaxed">{item.mechanism}</p></div>
+                      <div className="mt-5 pt-3 border-t border-[#B8965A]/25 flex items-center justify-between text-xs text-[#E5C88F]"><span>查阅完整档案</span><ChevronRight className="w-4 h-4 shrink-0 group-hover:translate-x-1 transition-transform" aria-hidden="true" /></div>
+                    </button>
+                  ); })}
+                </div>
               </div>
-            </div>
-          )}
+            );
+          })()}
           {activeTab === 'zhaoyeyuan-geo' && (
             <div className="max-w-5xl mx-auto space-y-12">
               <header className="border-b border-[#B8965A]/30 pb-6">
@@ -4144,7 +4141,7 @@ export default function App() {
                   ))}
                 </section>
                 <section className="space-y-4">
-                  <h4 className="text-sm font-bold tracking-widest text-[#B8965A] border-b border-[#B8965A]/20 pb-3">瑟兰落点与看守记录</h4>
+                  <h4 className="text-sm font-bold tracking-widest text-[#B8965A] border-b border-[#B8965A]/20 pb-3">{selectedEntity.data.region === 'zhaoyeyuan' ? '照夜原落点与档案记录' : '瑟兰落点与看守记录'}</h4>
                   {selectedEntity.data.localNotes.map((paragraph, index) => (
                     <p key={index} className="text-sm leading-loose text-[#D8D0C1]/90">{paragraph}</p>
                   ))}
