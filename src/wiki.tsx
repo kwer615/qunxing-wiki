@@ -1671,7 +1671,7 @@ export default function App() {
     return results.slice(0, 6);
   }, [searchQuery]);
   return (
-    <div className="min-h-screen bg-[#0B0A09] text-[#D8D0C1] font-serif relative selection:bg-[#8C3B32]/60 selection:text-[#F5EFE6]">
+    <div className="min-h-screen overflow-x-hidden bg-[#0B0A09] text-[#D8D0C1] font-serif relative selection:bg-[#8C3B32]/60 selection:text-[#F5EFE6]">
       <style>{`
         .font-serif {
           font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
@@ -1726,8 +1726,8 @@ export default function App() {
       />
       {/* 顶部极简残卷书眉 */}
       <header className="sticky top-0 z-30 bg-[#0B0A09]/90 backdrop-blur-md border-b border-[#B8965A]/20">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-8 h-16 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-4">
+        <div className="max-w-[1600px] mx-auto px-3 sm:px-8 h-16 flex items-center justify-between gap-2 sm:gap-4">
+          <div className="flex min-w-0 items-center gap-2 sm:gap-4">
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -1740,7 +1740,7 @@ export default function App() {
               className="cursor-pointer flex items-baseline gap-3 group"
             >
               <span className="text-[#B8965A] text-sm">✦</span>
-              <h1 className="text-lg sm:text-xl font-bold tracking-[0.22em] text-[#E6DEC8] group-hover:text-[#B8965A] transition-colors">
+              <h1 className="whitespace-nowrap text-base sm:text-xl font-bold tracking-[0.16em] sm:tracking-[0.22em] text-[#E6DEC8] group-hover:text-[#B8965A] transition-colors">
                 群星沉默之地
               </h1>
               <span className="hidden md:inline-block font-fell italic text-xs text-[#8E8474] tracking-widest">
@@ -1748,7 +1748,7 @@ export default function App() {
               </span>
             </div>
           </div>
-          <div className="relative w-56 sm:w-72">
+          <div className="relative w-28 shrink-0 sm:w-72">
             <div className="flex items-center border-b border-[#B8965A]/35 focus-within:border-[#B8965A] pb-1 transition-colors">
               <Search className="w-3.5 h-3.5 text-[#B8965A]/70 mr-2.5 shrink-0" />
               <input
@@ -1769,7 +1769,7 @@ export default function App() {
               )}
             </div>
             {quickSearchResults.length > 0 && (
-              <div className="absolute right-0 mt-2 w-80 bg-[#14110E] border border-[#B8965A]/40 shadow-2xl py-2 z-50">
+              <div className="absolute right-0 mt-2 w-[calc(100vw-1.5rem)] max-w-80 bg-[#14110E] border border-[#B8965A]/40 shadow-2xl py-2 z-50">
                 {quickSearchResults.map((item, i) => (
                   <button
                     key={i}
