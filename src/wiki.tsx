@@ -2531,117 +2531,65 @@ export default function App() {
           </div>
           {/* Ⅳ · 地区卷宗（可折叠手风琴） */}
           <div>
-            <div className="flex items-center gap-2 text-[11px] font-cinzel tracking-[0.25em] text-[#B8965A] uppercase mb-2.5">
-              <Compass className="w-3.5 h-3.5" />
-              <span>Ⅳ · 地区卷宗</span>
-            </div>
-            <div className="mb-3">
-              <button
-                type="button"
-                onClick={() => toggleRegion('serlan')}
-                className="w-full flex items-center justify-between py-2 px-2 text-xs font-semibold tracking-widest text-[#E6DEC8] hover:text-[#B8965A] border-b border-[#B8965A]/20 transition-colors"
-              >
-                <span className="flex items-center gap-2">
-                  <MapPin className="w-3.5 h-3.5 text-[#B8965A]" />
-                  <span>瑟兰行省 · SERLAN</span>
-                </span>
-                {openRegions.serlan ? (
-                  <ChevronDown className="w-3.5 h-3.5 text-[#B8965A]" />
-                ) : (
-                  <ChevronRight className="w-3.5 h-3.5 text-[#8E8474]" />
-                )}
-              </button>
-              {openRegions.serlan && (
-                <div className="mt-1.5 space-y-1 pl-3 border-l border-[#B8965A]/25">
-                  {[
-                    { id: 'serlan-chars', label: '人物', icon: Users },
-                    { id: 'serlan-boss', label: '灾变领主 · BOSS', icon: Skull, highlight: true },
-                    { id: 'serlan-beasts', label: '荒野异兽', icon: Feather },
-                    { id: 'serlan-containments', label: '收容物', icon: Archive },
-                    { id: 'serlan-geo', label: '地理、四圈与克朗', icon: Compass },
-                    { id: 'serlan-customs', label: '府城六规与销名', icon: ScrollText },
-                    { id: 'serlan-orgs', label: '留府、三司与不逝者', icon: Landmark },
-                    { id: 'serlan-quests', label: '旅途纪事（主线/支线）', icon: Train }
-                  ].map((sub) => {
-                    const IconComp = sub.icon;
-                    const isAct = activeTab === sub.id;
-                    return (
-                      <button
-                        key={sub.id}
-                        type="button"
-                        onClick={() => navigateTo(sub.id)}
-                        className={`w-full text-left py-2 px-3 text-xs tracking-wider transition-all flex items-center gap-2.5 ${
-                          isAct
-                            ? 'text-[#E5C88F] bg-gradient-to-r from-[#B8965A]/20 to-transparent border-l-2 border-[#B8965A] -ml-[1px] font-semibold'
-                            : sub.highlight
-                            ? 'text-[#C86D5B] hover:text-[#E2B49A]'
-                            : 'text-[#8E8474] hover:text-[#D8D0C1]'
-                        }`}
-                      >
-                        <IconComp className="w-3.5 h-3.5 shrink-0 opacity-80" />
-                        <span>{sub.label}</span>
-                      </button>
-                    );
-                  })}
+            <button type="button" onClick={() => setRegionMenuOpen(!regionMenuOpen)} className="w-full flex items-center justify-between text-[11px] font-cinzel tracking-[0.25em] text-[#B8965A] uppercase mb-2.5 py-1 hover:text-[#E5C88F] transition-colors">
+              <span className="flex items-center gap-2"><Compass className="w-3.5 h-3.5" /><span>Ⅳ · 地区卷宗</span></span>
+              {regionMenuOpen ? <ChevronDown className="w-3.5 h-3.5 text-[#B8965A]" /> : <ChevronRight className="w-3.5 h-3.5 text-[#8E8474]" />}
+            </button>
+            {regionMenuOpen && (
+              <div className="mt-1.5 space-y-3 pl-2 border-l border-[#B8965A]/25">
+                <div className="mb-3">
+                  <button type="button" onClick={() => toggleRegion('serlan')} className="w-full flex items-center justify-between py-2 px-2 text-xs font-semibold tracking-widest text-[#E6DEC8] hover:text-[#B8965A] border-b border-[#B8965A]/20 transition-colors">
+                    <span className="flex items-center gap-2"><MapPin className="w-3.5 h-3.5 text-[#B8965A]" /><span>瑟兰行省 · SERLAN</span></span>
+                    {openRegions.serlan ? <ChevronDown className="w-3.5 h-3.5 text-[#B8965A]" /> : <ChevronRight className="w-3.5 h-3.5 text-[#8E8474]" />}
+                  </button>
+                  {openRegions.serlan && (
+                    <div className="mt-1.5 space-y-1 pl-3 border-l border-[#B8965A]/25">
+                      {[
+                        { id: 'serlan-chars', label: '人物', icon: Users },
+                        { id: 'serlan-boss', label: '灾变领主 · BOSS', icon: Skull, highlight: true },
+                        { id: 'serlan-beasts', label: '荒野异兽', icon: Feather },
+                        { id: 'serlan-containments', label: '收容物', icon: Archive },
+                        { id: 'serlan-geo', label: '地理、四圈与克朗', icon: Compass },
+                        { id: 'serlan-customs', label: '府城六规与销名', icon: ScrollText },
+                        { id: 'serlan-orgs', label: '留府、三司与不逝者', icon: Landmark },
+                        { id: 'serlan-quests', label: '旅途纪事（主线/支线）', icon: Train }
+                      ].map((sub) => { const IconComp = sub.icon; const isAct = activeTab === sub.id; return (
+                        <button key={sub.id} type="button" onClick={() => navigateTo(sub.id)} className={`w-full text-left py-2 px-3 text-xs tracking-wider transition-all flex items-center gap-2.5 ${isAct ? 'text-[#E5C88F] bg-gradient-to-r from-[#B8965A]/20 to-transparent border-l-2 border-[#B8965A] -ml-[1px] font-semibold' : sub.highlight ? 'text-[#C86D5B] hover:text-[#E2B49A]' : 'text-[#8E8474] hover:text-[#D8D0C1]'}`}>
+                          <IconComp className="w-3.5 h-3.5 shrink-0 opacity-80" /><span>{sub.label}</span>
+                        </button>
+                      ); })}
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-          </div>
-          <div>
-            <div className="mb-3">
-              <button
-                type="button"
-                onClick={() => toggleRegion('zhaoyeyuan')}
-                className="w-full flex items-center justify-between py-2 px-2 text-xs font-semibold tracking-widest text-[#E6DEC8] hover:text-[#B8965A] border-b border-[#B8965A]/20 transition-colors"
-              >
-                <span className="flex items-center gap-2">
-                  <MapPin className="w-3.5 h-3.5 text-[#B8965A]" />
-                  <span>照夜原 · ZHAOYEYUAN</span>
-                </span>
-                {openRegions.zhaoyeyuan ? (
-                  <ChevronDown className="w-3.5 h-3.5 text-[#B8965A]" />
-                ) : (
-                  <ChevronRight className="w-3.5 h-3.5 text-[#8E8474]" />
-                )}
-              </button>
-              {openRegions.zhaoyeyuan && (
-                <div className="mt-1.5 space-y-1 pl-3 border-l border-[#B8965A]/25">
-                  {[
-                    { id: 'zhaoyeyuan-chars', label: '人物', icon: Users },
-                    { id: 'zhaoyeyuan-boss', label: '灾变领主 · BOSS', icon: Skull, highlight: true },
-                    { id: 'zhaoyeyuan-beasts', label: '荒野异兽', icon: Feather },
-                    { id: 'zhaoyeyuan-eight-beasts', label: '八兽与秘境', icon: Sparkles },
-                    { id: 'zhaoyeyuan-containments', label: '收容物', icon: Archive },
-                    { id: 'zhaoyeyuan-geo', label: '地理、四城与烬铃', icon: Compass },
-                    { id: 'zhaoyeyuan-customs', label: '四城常识圈与民俗', icon: ScrollText },
-                    { id: 'zhaoyeyuan-orgs', label: '玉衡会、四机构与民间组织', icon: Landmark },
-                    { id: 'zhaoyeyuan-quests', label: '旅途纪事（主线/支线）', icon: Train }
-                  ].map((sub) => {
-                    const IconComp = sub.icon;
-                    const isAct = activeTab === sub.id;
-                    return (
-                      <button
-                        key={sub.id}
-                        type="button"
-                        onClick={() => navigateTo(sub.id)}
-                        className={`w-full text-left py-2 px-3 text-xs tracking-wider transition-all flex items-center gap-2.5 ${
-                          isAct
-                            ? 'text-[#E5C88F] bg-gradient-to-r from-[#B8965A]/20 to-transparent border-l-2 border-[#B8965A] -ml-[1px] font-semibold'
-                            : sub.highlight
-                            ? 'text-[#C86D5B] hover:text-[#E2B49A]'
-                            : 'text-[#8E8474] hover:text-[#D8D0C1]'
-                        }`}
-                      >
-                        <IconComp className="w-3.5 h-3.5 shrink-0 opacity-80" />
-                        <span>{sub.label}</span>
-                      </button>
-                    );
-                  })}
+                <div className="mb-3">
+                  <button type="button" onClick={() => toggleRegion('zhaoyeyuan')} className="w-full flex items-center justify-between py-2 px-2 text-xs font-semibold tracking-widest text-[#E6DEC8] hover:text-[#B8965A] border-b border-[#B8965A]/20 transition-colors">
+                    <span className="flex items-center gap-2"><MapPin className="w-3.5 h-3.5 text-[#B8965A]" /><span>照夜原 · ZHAOYEYUAN</span></span>
+                    {openRegions.zhaoyeyuan ? <ChevronDown className="w-3.5 h-3.5 text-[#B8965A]" /> : <ChevronRight className="w-3.5 h-3.5 text-[#8E8474]" />}
+                  </button>
+                  {openRegions.zhaoyeyuan && (
+                    <div className="mt-1.5 space-y-1 pl-3 border-l border-[#B8965A]/25">
+                      {[
+                        { id: 'zhaoyeyuan-chars', label: '人物', icon: Users },
+                        { id: 'zhaoyeyuan-boss', label: '灾变领主 · BOSS', icon: Skull, highlight: true },
+                        { id: 'zhaoyeyuan-beasts', label: '荒野异兽', icon: Feather },
+                        { id: 'zhaoyeyuan-eight-beasts', label: '八兽与秘境', icon: Sparkles },
+                        { id: 'zhaoyeyuan-containments', label: '收容物', icon: Archive },
+                        { id: 'zhaoyeyuan-geo', label: '地理、四城与烬铃', icon: Compass },
+                        { id: 'zhaoyeyuan-customs', label: '四城常识圈与民俗', icon: ScrollText },
+                        { id: 'zhaoyeyuan-orgs', label: '玉衡会、四机构与民间组织', icon: Landmark },
+                        { id: 'zhaoyeyuan-quests', label: '旅途纪事（主线/支线）', icon: Train }
+                      ].map((sub) => { const IconComp = sub.icon; const isAct = activeTab === sub.id; return (
+                        <button key={sub.id} type="button" onClick={() => navigateTo(sub.id)} className={`w-full text-left py-2 px-3 text-xs tracking-wider transition-all flex items-center gap-2.5 ${isAct ? 'text-[#E5C88F] bg-gradient-to-r from-[#B8965A]/20 to-transparent border-l-2 border-[#B8965A] -ml-[1px] font-semibold' : sub.highlight ? 'text-[#C86D5B] hover:text-[#E2B49A]' : 'text-[#8E8474] hover:text-[#D8D0C1]'}`}>
+                          <IconComp className="w-3.5 h-3.5 shrink-0 opacity-80" /><span>{sub.label}</span>
+                        </button>
+                      ); })}
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
-</aside>
+        </aside>
         {/* ===================================================================
             右侧主画卷内容区
         =================================================================== */}
