@@ -2041,6 +2041,15 @@ const ZHAOYEYUAN_CITY_LORDS = [
   }
 ];
 
+[...ZHAOYEYUAN_CITY_LORDS, ...ZHAOYEYUAN_CHARACTERS].forEach((character) => {
+  const files = CHAR_IMAGES[character.id];
+  if (!files || files.length === 0) return;
+  character.imgs = files.map((url, index) => ({
+    label: character.imgs?.[index]?.label || `立绘 ${index + 1}`,
+    url
+  }));
+});
+
 function RelicImageArchitecture({
   imgs = [],
   code = 'ARCHIVE-01',
@@ -3098,7 +3107,7 @@ export default function App() {
                 lifestyle: [c.duty, c.experience, c.relation].filter(Boolean).join('；'),
                 combat: `${c.tier}。赐福：${c.blessings.length ? c.blessings.join('、') : '无'}。具体战果按位阶、状态与环境结算。`,
                 secret: c.relation,
-                imgs: [{ label: '肖像 · 待补', url: '' }]
+                imgs: c.imgs || [{ label: '肖像 · 待补', url: '' }]
               }))
             ];
             const filtered = people.filter((c) => zhaoyeyuanCharFilter === '全部' || c.faction === zhaoyeyuanCharFilter);
